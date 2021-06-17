@@ -11,8 +11,6 @@ Este plugin tiene requerimientos especiales, sencillamente instalar en una versi
 <h1><b>Interfaz de usuario</b></h1>
 ![interfaz](https://user-images.githubusercontent.com/79421833/122484184-1c37c280-cfa2-11eb-9545-56e7be7a38ee.jpg)
 
-
-
 <h1><b>Gráficos e indicadores</h1></b>
 ![DASHBOARDS](https://user-images.githubusercontent.com/79421833/122482508-b4cc4380-cf9e-11eb-93e5-20ef73560caf.jpg)
 
