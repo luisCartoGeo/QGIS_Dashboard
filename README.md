@@ -8,6 +8,8 @@ Este plugin aprovecha y extiende mediante Python las <strong>Anotaciones Html</s
 <h2><strong>Instalación y requerimientos</strong></h2>
 Este plugin tiene requerimientos especiales, sencillamente instalar en una versión QGIS3.10 o superior.<br>
 
+[My image](luisCartoGeo.github.com/QGIS_Dashboard/interfaz.jpg)
+
 
 
 
