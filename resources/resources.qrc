@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/QGIS_Dashboard" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
