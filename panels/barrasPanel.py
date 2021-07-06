@@ -51,7 +51,6 @@ class barrasPanel(QgsHtmlAnnotation):
         self.anchoF=350
         self.altoF=130
         self.iniHtml=''
-        self.ahtml=None
         
         self.tempf=None
         
@@ -204,4 +203,4 @@ class barrasPanel(QgsHtmlAnnotation):
         try:
             os.remove(self.tempf.name)
         except Exception as e:
-            print(e)
+            print(str(e))

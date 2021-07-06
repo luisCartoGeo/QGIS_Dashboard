@@ -1,0 +1,33 @@
+
+text
+can only concatenate str (not "QColor") to str
+local variable 'tp' referenced before assignment
+can only concatenate str (not "QColor") to str
+local variable 'tp' referenced before assignment
+can only concatenate str (not "QColor") to str
+local variable 'tp' referenced before assignment
+can only concatenate str (not "QColor") to str
+local variable 'tp' referenced before assignment
+can only concatenate str (not "QColor") to str
+local variable 'tp' referenced before assignment
+can only concatenate str (not "QColor") to str
+local variable 'tp' referenced before assignment
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsTextAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 
+Archivo persistente a borrar 'QgsHtmlAnnotation' object has no attribute 'tempf'
+No se pudieron remover los paneles de la lista 

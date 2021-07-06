@@ -134,9 +134,9 @@ class styleBarPanel():
                 '  y: yv,'+'\n'+\
                 '  type: "bar",'+'\n'
             if self.typeColor=='unicolor':
-                val=val+'  marker: {color: '+"'"+self.colorBar+"'"+'},'+'\n'
+                val=val+'  marker: {color: '+"'"+self.colorBar+"'"+',line:{color:"black",width:1}},'+'\n'
             else:
-                val=val+'  marker: {color:'+self.defPaletteColors(self.data[0].keys())+'},'+'\n'
+                val=val+'  marker: {color:'+self.defPaletteColors(self.data[0].keys())+',line:{color:"black",width:1}},'+'\n'
             text='  text: yv.map(String),'+'\n'+\
                  '  textposition:'+" 'auto'"+'}];'+'\n'+\
                  'var layout = {'+'\n'
@@ -152,9 +152,9 @@ class styleBarPanel():
                 '  opacity:'+str(opacidad)+','+'\n'+\
                 '  type: "bar",'+'\n'
             if self.typeColor=='unicolor':
-                dat=dat+'  marker: {color: '+"'"+self.colorBar+"'"+'}};'+'\n'
+                dat=dat+'  marker: {color: '+"'"+self.colorBar+"'"+',line:{color:"black",width:1}}};'+'\n'
             else:
-                dat=dat+'  marker: {color:'+self.defPaletteColors(self.data[0].keys())+'}};'+'\n'
+                dat=dat+'  marker: {color:'+self.defPaletteColors(self.data[0].keys())+',line:{color:"black",width:1}}};'+'\n'
 
             self.html=self.html+dat
             if self._select==True or len(data)>1:

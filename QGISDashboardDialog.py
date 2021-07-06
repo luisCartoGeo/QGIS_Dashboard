@@ -28,8 +28,9 @@ from .panels.textPanel import textPanel
 from .panels.indicadorPanel import indicadorPanel
 from .panels.seriesPanel import seriesPanel
 from .panels.barrasPanel import barrasPanel
-from .panels.groupPanel6 import groupPanel
+#from .panels.groupPanel6 import groupPanel
 from .myUtils.dashColors import dashColors
+from .panels.adminPanel import adminPanel
 
 from .calculations import *
 from .register import logControl
@@ -39,22 +40,28 @@ DialogUi, DialogType=uic.loadUiType(os.path.join(
 
 class dashDialog(DialogUi, DialogType):
     """Construction and management of the panel creation wizard """
-    def __init__(self,canvas):
+    def __init__(self,iface,manager):
         """Constructor.
 
         :param mapCanvas Represents a drawing window, it is where the 
         layers are displayed (raster, vector, ..)..
-        :type iface: QgsMapCanvas
+        :type canvas: QgsMapCanvas
         """
         super().__init__()
         self.setupUi(self)   #initializes everything done in QtDesigner
         self.dir = os.path.dirname(__file__)
-        self.posicion='top-left'
+        self.posicion='topLeft'
         self.setWindowTitle("-----Builder of  Dashboard----")
         self.npaneles=0
+        #gestor de paneles
+        self.manager=manager
         self.listaPaneles=[]
+        #Predefined panel sizes
+        self.sizesPanels={'Medium':(40,30),'Small':(35,25),'Large':(45,35)}
+        #iface
+        self.iface=iface
         #MapCanvas
-        self.canvas=canvas
+        self.canvas=self.iface.mapCanvas()
 #        self.adminDash=groupPanel(canvas)
         #REFERENCE TO THE PROJECT
         self.pry=QgsProject.instance()
@@ -121,6 +128,8 @@ class dashDialog(DialogUi, DialogType):
         self.opLineStyle.setChecked(True)
         self.opAreaStyle.setChecked(False)
         self.splitTextLine.setChecked(False)
+        #Initializing predefined panel sizes
+        self.cbSizePanel.addItems(self.sizesPanels.keys())
         
         #TOOLBOX BAR PANEL SETTINGS
         self.barToolBox.setCurrentIndex(0)
@@ -246,16 +255,21 @@ class dashDialog(DialogUi, DialogType):
     def aceptar(self):
         if len(self.listaPaneles) >0:
             try:
-                self.adminDash=groupPanel(self.canvas,[i for i in self.listaPaneles],self.posicion)
+                self.manager.posicion=self.posicion
+                self.manager.init(self.canvas)
+                ancho= self.sizesPanels[self.cbSizePanel.currentText()][0]
+                alto= self.sizesPanels[self.cbSizePanel.currentText()][1]
+                self.manager.initPlacePanels(ancho,alto)
+                self.manager.addPanels(self.listaPaneles)
                 #Verificamos si el check del borde esta checkeado o no
                 if self.checkBoxMarco.isChecked()==False:
-                    self.adminDash.globalBordeMarco=False
+                    self.manager.globalBordeMarco=False
                 if self.checkBoxToolTip.isChecked()==True:
-                    self.adminDash.globalToolTip=True
-                self.adminDash.ubicarPaneles()
+                    self.manager.globalToolTip=True
+                self.manager.placePanels()
             except Exception as e:
                 if self.logAcces:
-                    self.log.writeLog(e)
+                    self.log.writeLog(str(e))
     
     def cancelar(self):
         self.listaPaneles.clear()
@@ -269,6 +283,8 @@ class dashDialog(DialogUi, DialogType):
         items=self.listWidget.selectedItems()
         camposn=[i.text() for i in items]
         campox=self.camXSeries.currentText()
+        ancho= self.sizesPanels[self.cbSizePanel.currentText()][0]
+        alto= self.sizesPanels[self.cbSizePanel.currentText()][1]
         if len(camposn)>1:
             #Disminuimos el numero de paneles disponibles
             np=int(self.labelNp.text())-1
@@ -285,7 +301,7 @@ class dashDialog(DialogUi, DialogType):
                 tp=seriesPanel(self.canvas,self.capa,[camposn,campox],title=titulo,fill=fill,wordBreak=wordBreak,\
                     widthline=self.widthLine.value(),colorTit=self.colorTitleline.color(),\
                     sizeTitle=self.spTitleSizeLine.value(),colorLabels=self.labelColorLine.color(),\
-                    sizeLabels=self.spLabelSizeLine.value())
+                    sizeLabels=self.spLabelSizeLine.value(),anchoP=ancho,altoP=alto)
             except Exception as e:
                 if self.logAcces:
                     self.log.writeLog(e)
@@ -293,7 +309,7 @@ class dashDialog(DialogUi, DialogType):
                 self.listaPaneles.append(tp)
             except Exception as e:
                 if self.logAcces:
-                    self.log.writeLog(e)
+                    self.log.writeLog(str(e))
     
     def procesarBarras(self):
         #CREAMOS EL GRAFICO
@@ -306,10 +322,11 @@ class dashDialog(DialogUi, DialogType):
             wordBreak=True
         else:
             wordBreak=False
-        print(wordBreak)
         if titulo=='':
             titulo='Bar Graphic'
-        print(titulo)
+        #Dimensiones
+        ancho= self.sizesPanels[self.cbSizePanel.currentText()][0]
+        alto= self.sizesPanels[self.cbSizePanel.currentText()][1]
         try:
             if self.modBarras.currentText()=='Values of a field (Attribute)':
                 campox=self.camXBar.currentText()
@@ -318,7 +335,8 @@ class dashDialog(DialogUi, DialogType):
                     tp=barrasPanel(self.canvas,self.capa,'atributo-sum',titulo,[campox,campoy],\
                     colorBar=self.colorBar.color(),colorTit=self.colorTitleBar.color(),typeColor=typeColor,\
                     wordBreak=wordBreak,sizeTitle=self.spTitleSizeBar.value(),sizeLabels=self.spLabelSizeBar.value(),\
-                    colorLabels=self.colorLabelBar.color(),palette=self.paletteBar.currentText())
+                    colorLabels=self.colorLabelBar.color(),palette=self.paletteBar.currentText(),\
+                    anchoP=ancho,altoP=alto)
             elif self.modBarras.currentText()=='Multiple fields':
                 items=self.listWidget2.selectedItems()
                 campos=[i.text() for i in items]
@@ -326,7 +344,8 @@ class dashDialog(DialogUi, DialogType):
                     tp=barrasPanel(self.canvas,self.capa,'multiple_fields',titulo,[campos],\
                     colorBar=self.colorBar.color(),colorTit=self.colorTitleBar.color(),typeColor=typeColor,\
                     wordBreak=wordBreak,sizeTitle=self.spTitleSizeBar.value(),sizeLabels=self.spLabelSizeBar.value(),\
-                    colorLabels=self.colorLabelBar.color(),palette=self.paletteBar.currentText())
+                    colorLabels=self.colorLabelBar.color(),palette=self.paletteBar.currentText(),\
+                    anchoP=ancho,altoP=alto)
         except Exception as e:
             if self.logAcces:
                 self.log.writeLog(str(e))
@@ -350,8 +369,6 @@ class dashDialog(DialogUi, DialogType):
     def procesarTextPanel(self):
         #CREAMOS EL PANEL
         titulo=self.lineEdit.text()
-#        print(self.operadorPanelT.currentText())
-#        print(self.operadorPanelT.isEnabled())
         if titulo=='':
             titulo='Text Panel'
         capa=self.capa.name()
@@ -368,6 +385,9 @@ class dashDialog(DialogUi, DialogType):
             self.colorIcono=0
         else:
             self.colorIcono=1
+        #Dimensiones
+        ancho= self.sizesPanels[self.cbSizePanel.currentText()][0]
+        alto= self.sizesPanels[self.cbSizePanel.currentText()][1]
         try:
             if modo=='Total selected entities':
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
@@ -376,12 +396,12 @@ class dashDialog(DialogUi, DialogType):
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
-                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
                     tp=textPanel(self.canvas,self.capa, 'entid_seleccionadas', titulo,[],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                    suavizado=self.roundFrame.value(),estilo=estilot)
+                    suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
             elif modo=='Percentage':
                 campo=self.cam1PanelTexto.currentText()
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
@@ -390,12 +410,12 @@ class dashDialog(DialogUi, DialogType):
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
-                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
                     tp=textPanel(self.canvas,self.capa,'Porcentaje',titulo,[campo],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                    suavizado=self.roundFrame.value(),estilo=estilot)
+                    suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
             elif modo=='Sum of an attribute':
                 campo=self.cam1PanelTexto.currentText()
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
@@ -404,12 +424,12 @@ class dashDialog(DialogUi, DialogType):
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
-                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
                     tp=textPanel(self.canvas,self.capa,'atributo',titulo,[campo],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                    suavizado=self.roundFrame.value(),estilo=estilot)
+                    suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
             elif modo=='Statistics. Selected entities':
                 campo=self.cam1PanelTexto.currentText()
                 operador=self.operadorPanelT.currentText()
@@ -419,12 +439,12 @@ class dashDialog(DialogUi, DialogType):
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
-                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
                     tp=textPanel(self.canvas,self.capa,'math-atributo',titulo,[campo,operador],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                    suavizado=self.roundFrame.value(),estilo=estilot)
+                    suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
             elif modo=='Statistics. Selection that coincides with':
                 campo=self.cam1PanelTexto.currentText()
                 operador=self.operadorPanelT.currentText()
@@ -436,16 +456,17 @@ class dashDialog(DialogUi, DialogType):
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
-                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
                     tp=textPanel(self.canvas,self.capa,'math-atributo',titulo,[campo,operador,campos,atrib],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                    suavizado=self.roundFrame.value(),estilo=estilot)
+                    suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
             elif modo=='Entities contained in selection':
                 capa2=self.cap2PanelTexto.currentText()
                 if self.capa==self.cap2PanelTexto.currentData():
-                    raise ErrorEqualLayers()
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
                 else:
                     if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                     self.cbTextPestilo.currentText()!='Separate frames':
@@ -453,38 +474,40 @@ class dashDialog(DialogUi, DialogType):
                         fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                         estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
-                        direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                        direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                     else:
                         tp=textPanel(self.canvas,self.capa, 'entid-selec-intersect', titulo,[capa2],\
                         fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                        suavizado=self.roundFrame.value(),estilo=estilot)
+                        suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
             elif modo=='Entities contained. count by attribute that coincides with':
                 capa2=self.cap2PanelTexto.currentText()
                 campo2=self.cam3PanelTexto.currentText()
                 valor=self.lineE1.text()
                 if self.capa==self.cap2PanelTexto.currentData():
-                    raise ErrorEqualLayers()
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
                 else:
                     if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                     self.cbTextPestilo.currentText()!='Separate frames':
                         tp=textPanel(self.canvas,self.capa,'entid-selec-intersect-atrib', titulo,\
                         [capa2,campo2,valor],fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                        estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
+                        estilo=estilot,icono=True,rutaIcono=self.ruta_icono,anchoP=ancho,altoP=alto,\
                         direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
                     else:
                         tp=textPanel(self.canvas,self.capa, 'entid-selec-intersect-atrib', titulo,[capa2,campo2,valor],\
                         fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
-                        suavizado=self.roundFrame.value(),estilo=estilot)
-            self.listaPaneles.append(tp)
-            #Disminuimos el numero de paneles disponibles
-            np=int(self.labelNp.text())-1
-            self.labelNp.setText(str(np))
+                        suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
+            if type(tp)==textPanel:
+                self.listaPaneles.append(tp)
+                #Disminuimos el numero de paneles disponibles
+                np=int(self.labelNp.text())-1
+                self.labelNp.setText(str(np))
         except Exception as e:
             if self.logAcces:
-                self.log.writeLog(e)
+                self.log.writeLog(str(e))
             
 #Modalidades en PANEL TEXT: Total entidades seleccionadas,
 #Suma de un atributo,Estadistica. Entidades seleccionadas,
@@ -613,43 +636,46 @@ class dashDialog(DialogUi, DialogType):
                         
     #DEFINIMOS LA CAPA SECUNDARIA DE TEXT PANEL. LA CAPA QUE INTERSECTA
     def capaSecundariaTextP(self):
-        self.cap2PanelTexto.clear()
-        capaPrincipal=self.lc.currentData()
-        for i in self.listC:
-#            if i!=capaPrincipal:
-            try:
-                if i.isSpatial():
-                    self.cap2PanelTexto.addItem(i.name(),i)
-            except:
-                pass
-        capa2=self.cap2PanelTexto.currentData()
-        qfields=capa2.fields()
-        self.cam3PanelTexto.clear()
-        if qfields.count()>0:
-            for i in qfields.toList():
-                self.cam3PanelTexto.addItem(i.name())
+        if self.lc.count()>0 or self.lc.currentText()!= "":
+            self.cap2PanelTexto.clear()
+            capaPrincipal=self.lc.currentData()
+            for i in self.listC:
+    #            if i!=capaPrincipal:
+                try:
+                    if i.isSpatial():
+                        self.cap2PanelTexto.addItem(i.name(),i)
+                except:
+                    pass
+            capa2=self.cap2PanelTexto.currentData()
+            qfields=capa2.fields()
+            self.cam3PanelTexto.clear()
+            if qfields.count()>0:
+                for i in qfields.toList():
+                    self.cam3PanelTexto.addItem(i.name())
     
     #Evento cuando seleccionamos otra capa secundaria.Text Panel
     def cambioCapaSecundTextP(self):
-#        print('n lista capas2 ',self.cap2PanelTexto.count())
-        capa2=self.cap2PanelTexto.currentData()
-#        print(capa2)
-        qfields=capa2.fields()
-        self.cam3PanelTexto.clear()
-        if qfields.count()>0:
-            for i in qfields.toList():
-                self.cam3PanelTexto.addItem(i.name())
+        if self.cap2PanelTexto.count()>0:
+    #        print('n lista capas2 ',self.cap2PanelTexto.count())
+            capa2=self.cap2PanelTexto.currentData()
+    #        print(capa2)
+            qfields=capa2.fields()
+            self.cam3PanelTexto.clear()
+            if qfields.count()>0:
+                for i in qfields.toList():
+                    self.cam3PanelTexto.addItem(i.name())
     
     #DEFINIMOS LA CAPA SECUNDARIA DE INDICADOR. LA CAPA QUE INTERSECTA
     def capaSecundariaInd(self):
-        self.capa2ind.addItems([i.name() for i in self.listC])
-        #Llenamos las listas de campos
-        capa= self.pry.mapLayersByName(self.capa2ind.currentText())[0]
-        qfields=capa.fields()
-        if qfields.count()>0:
-            for i in qfields.toList():
-                self.cam2Ind.addItem(i.name()) #indicador
-        self.capa2ind.currentTextChanged.connect(self.cambioCapaSecund)
+        if self.capa2ind.count()>0:
+            self.capa2ind.addItems([i.name() for i in self.listC])
+            #Llenamos las listas de campos
+            capa= self.pry.mapLayersByName(self.capa2ind.currentText())[0]
+            qfields=capa.fields()
+            if qfields.count()>0:
+                for i in qfields.toList():
+                    self.cam2Ind.addItem(i.name()) #indicador
+            self.capa2ind.currentTextChanged.connect(self.cambioCapaSecund)
     
     #Evento cuando seleccionamos otra capa secundaria.indicador
     def cambioCapaSecund(self):
@@ -739,8 +765,8 @@ class dashDialog(DialogUi, DialogType):
         self.posi6.clicked.connect(self.defPosi6)
     
     def defPosi1(self,e):
-        if self.posicion!='top-left':
-            self.posicion='top-left'
+        if self.posicion!='topLeft':
+            self.posicion='topLeft'
             self.posi1.setIcon(self.idposi1)
             self.posi2.setIcon(self.iupposi2)
             self.posi3.setIcon(self.iupposi3)
@@ -749,8 +775,8 @@ class dashDialog(DialogUi, DialogType):
             self.posi6.setIcon(self.iupposi6)
     
     def defPosi2(self,e):
-        if self.posicion!='top-right':
-            self.posicion='top-right'
+        if self.posicion!='topRight':
+            self.posicion='topRight'
             self.posi1.setIcon(self.iupposi1)
             self.posi2.setIcon(self.idposi2)
             self.posi3.setIcon(self.iupposi3)
@@ -759,8 +785,8 @@ class dashDialog(DialogUi, DialogType):
             self.posi6.setIcon(self.iupposi6)
     
     def defPosi3(self,e):
-        if self.posicion!='bottom-left':
-            self.posicion='bottom-left'
+        if self.posicion!='bottomLeft':
+            self.posicion='bottomLeft'
             self.posi1.setIcon(self.iupposi1)
             self.posi2.setIcon(self.iupposi2)
             self.posi3.setIcon(self.idposi3)
@@ -769,8 +795,8 @@ class dashDialog(DialogUi, DialogType):
             self.posi6.setIcon(self.iupposi6)
     
     def defPosi4(self,e):
-        if self.posicion!='bottom-right':
-            self.posicion='bottom-right'
+        if self.posicion!='bottomRight':
+            self.posicion='bottomRight'
             self.posi1.setIcon(self.iupposi1)
             self.posi2.setIcon(self.iupposi2)
             self.posi3.setIcon(self.iupposi3)
@@ -779,8 +805,8 @@ class dashDialog(DialogUi, DialogType):
             self.posi6.setIcon(self.iupposi6)
     
     def defPosi5(self,e):
-        if self.posicion!='dtop-left':
-            self.posicion='dtop-left'
+        if self.posicion!='horizontalTop':
+            self.posicion='horizontalTop'
             self.posi1.setIcon(self.iupposi1)
             self.posi2.setIcon(self.iupposi2)
             self.posi3.setIcon(self.iupposi3)
@@ -789,8 +815,8 @@ class dashDialog(DialogUi, DialogType):
             self.posi6.setIcon(self.iupposi6)
     
     def defPosi6(self,e):
-        if self.posicion!='dbottom-left':
-            self.posicion='dbottom-left'
+        if self.posicion!='horizontalBottom':
+            self.posicion='horizontalBottom'
             self.posi1.setIcon(self.iupposi1)
             self.posi2.setIcon(self.iupposi2)
             self.posi3.setIcon(self.iupposi3)

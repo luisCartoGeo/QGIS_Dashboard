@@ -27,7 +27,7 @@ from ..calculations.spatialQuery import spatialQueries
 import tempfile
 
 class textPanel(QgsHtmlAnnotation):
-    def __init__(self,canvas,layer,type,title,expression,position='top-left',anchoP=150,altoP=100,\
+    def __init__(self,canvas,layer,type,title,expression,position='top-left',anchoP=40,altoP=30,\
     fondTit='black',colorTextTit='white',fondVal='lightblue', colorTextVal='black',\
     suavizado=0,estilo='cuadrado',icono=False,rutaIcono=None,toolTip=False,\
     direccionIcono='center',colorIcono=0):
@@ -61,19 +61,15 @@ class textPanel(QgsHtmlAnnotation):
         #---------------------------------------------
         #INDICE ESPACIAL
         self.indiceE=None
-        
-        self.anchoF=anchoP
-        self.altoF=altoP
+
         self.valor=self.defValor()
         self.style=styleTextPanel(title=self.title,fondTit=self.fondTit,colorTextTit=self.colorTextTit,\
                 fondVal=self.fondVal,colorTextVal=self.colorTextVal,estilo=self.estilo, icono=self.icono,\
                 suavizado=self.suavizado,rutaIcono=self.rutaIcono,direccionIcono=self.direccionIcono,colorIcono=self.colorIcono)
         self.style.value=self.valor
         self.asignarEstilo()
-        self.ahtml=None
-        self.anchoF=self.anchop+15
-        self.altoF=self.altop+25
-        self.setFrameSize(QSizeF(self.anchoF,self.altoF))
+        
+        self.setFrameSizeMm(QSizeF(self.anchop,self.altop))
         self.tempf=None
         self.setFrameOffsetFromReferencePoint(QPointF(0, 0))
         self.conectar()

@@ -38,7 +38,7 @@ from .panels.indicadorPanel import indicadorPanel
 from .panels.seriesPanel import seriesPanel
 from .panels.barrasPanel import barrasPanel
 from .panels.groupPanel6 import groupPanel
-
+from .panels.adminPanel import adminPanel
 
 class QGISDashboard:
     """QGISDashboard Plugin Implementation."""
@@ -192,6 +192,7 @@ class QGISDashboard:
         self.actions.append(self.labelT)
         self.actions.append(self.actionTransparency)
         
+        self.manager=adminPanel(self.iface.mapCanvas())
         # will be set False in run()
         self.first_start = True
 
@@ -254,11 +255,11 @@ class QGISDashboard:
             # Only create GUI ONCE in callback, so that it will only load when the plugin is started
             if self.first_start == True:
                 self.first_start = False
-                self.dlg = dashDialog(self.iface.mapCanvas())
+                self.dlg = dashDialog(self.iface,self.manager)
                 # show the dialog
                 self.dlg.show()
             elif  self.first_start == False:
-                self.dlg = dashDialog(self.iface.mapCanvas())
+                self.dlg = dashDialog(self.iface,self.manager)
                 # show the dialog
                 self.dlg.show()
 #                self.dlg.paginador.setCurrentIndex(0)
