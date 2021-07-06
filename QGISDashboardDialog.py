@@ -21,6 +21,7 @@ from qgis.PyQt.QtGui import *
 from qgis.PyQt.QtCore import *
 from qgis.core import *
 from qgis.gui import QgsSvgSelectorWidget
+from .panels.stylesIndicadorPanel import styleIndicadorPanel
 from .panels.stylesTextPanel import styleTextPanel
 from .panels.stylesBarPanel import styleBarPanel
 from .panels.operations import operations
@@ -184,6 +185,20 @@ class dashDialog(DialogUi, DialogType):
         self.cambioPanelTextEstilo()
         #EVENTO CAMBIO CAPA SECUNDARIA
         self.cap2PanelTexto.currentTextChanged.connect(self.cambioCapaSecundTextP)
+        
+        #TOOLBOX INDICATOR PANEL SETTINGS
+        self.indToolBox.setCurrentIndex(0)
+        self.cbIndEstilo.clear()
+        self.cbIndEstilo.addItems(styleIndicadorPanel.getTypeStyles())
+        self.cbIndEstilo.setCurrentIndex(0)
+        self.indTitleColor.setColor(QColor("black"))
+        self.indBaseColor.setColor(QColor("lightGray"))
+        self.indLineColor.setColor(QColor("red"))
+        self.indFinalColor.setColor(QColor("darkGray"))
+        self.indMarkColor.setColor(QColor("red"))
+        self.indBarColor.setColor(QColor("blue"))
+        self.indBackColor.setColor(QColor("white"))
+        self.indColorValue.setColor(QColor("black"))
         
         #BOTONES PARA DEFINIR POSICION
         self.posi1=QPushButton('')
@@ -392,13 +407,13 @@ class dashDialog(DialogUi, DialogType):
             if modo=='Total selected entities':
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                 self.cbTextPestilo.currentText()!='Separate frames':
-                    tp=textPanel(self.canvas,self.capa, 'entid_seleccionadas', titulo,[],\
+                    tp=textPanel(self.capa, 'entid_seleccionadas', titulo,[],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
                     direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
-                    tp=textPanel(self.canvas,self.capa, 'entid_seleccionadas', titulo,[],\
+                    tp=textPanel(self.capa, 'entid_seleccionadas', titulo,[],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
@@ -406,13 +421,13 @@ class dashDialog(DialogUi, DialogType):
                 campo=self.cam1PanelTexto.currentText()
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                 self.cbTextPestilo.currentText()!='Separate frames':
-                    tp=textPanel(self.canvas,self.capa,'Porcentaje',titulo,[campo],\
+                    tp=textPanel(self.capa,'Porcentaje',titulo,[campo],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
                     direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
-                    tp=textPanel(self.canvas,self.capa,'Porcentaje',titulo,[campo],\
+                    tp=textPanel(self.capa,'Porcentaje',titulo,[campo],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
@@ -420,13 +435,13 @@ class dashDialog(DialogUi, DialogType):
                 campo=self.cam1PanelTexto.currentText()
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                 self.cbTextPestilo.currentText()!='Separate frames':
-                    tp=textPanel(self.canvas,self.capa,'atributo',titulo,[campo],\
+                    tp=textPanel(self.capa,'atributo',titulo,[campo],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
                     direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
-                    tp=textPanel(self.canvas,self.capa,'atributo',titulo,[campo],\
+                    tp=textPanel(self.capa,'atributo',titulo,[campo],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
@@ -435,13 +450,13 @@ class dashDialog(DialogUi, DialogType):
                 operador=self.operadorPanelT.currentText()
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                 self.cbTextPestilo.currentText()!='Separate frames':
-                    tp=textPanel(self.canvas,self.capa,'math-atributo',titulo,[campo,operador],
+                    tp=textPanel(self.capa,'math-atributo',titulo,[campo,operador],
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
                     direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
-                    tp=textPanel(self.canvas,self.capa,'math-atributo',titulo,[campo,operador],\
+                    tp=textPanel(self.capa,'math-atributo',titulo,[campo,operador],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
@@ -452,13 +467,13 @@ class dashDialog(DialogUi, DialogType):
                 atrib=self.lineE1.text()
                 if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                 self.cbTextPestilo.currentText()!='Separate frames':
-                    tp=textPanel(self.canvas,capa,'math-atributo',titulo,[campo,operador,campos,atrib],\
+                    tp=textPanel(capa,'math-atributo',titulo,[campo,operador,campos,atrib],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
                     direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                 else:
-                    tp=textPanel(self.canvas,self.capa,'math-atributo',titulo,[campo,operador,campos,atrib],\
+                    tp=textPanel(self.capa,'math-atributo',titulo,[campo,operador,campos,atrib],\
                     fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                     fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                     suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
@@ -470,13 +485,13 @@ class dashDialog(DialogUi, DialogType):
                 else:
                     if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                     self.cbTextPestilo.currentText()!='Separate frames':
-                        tp=textPanel(self.canvas,self.capa, 'entid-selec-intersect', titulo,[capa2],\
+                        tp=textPanel(self.capa, 'entid-selec-intersect', titulo,[capa2],\
                         fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                         estilo=estilot,icono=True,rutaIcono=self.ruta_icono,\
                         direccionIcono=direcIcono,colorIcono=str(self.colorIcono),anchoP=ancho,altoP=alto)
                     else:
-                        tp=textPanel(self.canvas,self.capa, 'entid-selec-intersect', titulo,[capa2],\
+                        tp=textPanel(self.capa, 'entid-selec-intersect', titulo,[capa2],\
                         fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                         suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
@@ -490,16 +505,155 @@ class dashDialog(DialogUi, DialogType):
                 else:
                     if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
                     self.cbTextPestilo.currentText()!='Separate frames':
-                        tp=textPanel(self.canvas,self.capa,'entid-selec-intersect-atrib', titulo,\
+                        tp=textPanel(self.capa,'entid-selec-intersect-atrib', titulo,\
                         [capa2,campo2,valor],fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                         estilo=estilot,icono=True,rutaIcono=self.ruta_icono,anchoP=ancho,altoP=alto,\
                         direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
                     else:
-                        tp=textPanel(self.canvas,self.capa, 'entid-selec-intersect-atrib', titulo,[capa2,campo2,valor],\
+                        tp=textPanel(self.capa, 'entid-selec-intersect-atrib', titulo,[capa2,campo2,valor],\
                         fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
                         fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
                         suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
+            elif modo=='Number of entities in the area. Density':
+                capa2=self.cap2PanelTexto.currentText()
+                crs=self.capa.crs()
+                if self.capa==self.cap2PanelTexto.currentData():
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                else:
+                    if crs.isGeographic():
+                        self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                        'The main layer is in geographic coordinates. Lat/Long The value will be processed in degrees', level=Qgis.Info, duration=7)
+                        unidad=1
+                    else:
+                        if crs.mapUnits() != QgsUnitTypes.DistanceMeters:
+                            self.iface.messageBar().pushMessage('Coordinate units will be considered in meters',\
+                            'For now, only units of the coordinate system in meters are considered', level=Qgis.Info, duration=7)
+                        unidad=self.tpUnit.currentText()   
+                    if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
+                        self.cbTextPestilo.currentText()!='Separate frames':
+                        tp=textPanel(self.capa,'densidad', titulo,\
+                        [capa2,unidad],fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        estilo=estilot,icono=True,rutaIcono=self.ruta_icono,anchoP=ancho,altoP=alto,\
+                        direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    else:
+                        tp=textPanel(self.capa, 'densidad', titulo,[capa2,unidad],\
+                        fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
+            elif modo=='Sum of attribute between area. Density':
+                capa2=self.cap2PanelTexto.currentText()
+                campo2=self.cam3PanelTexto.currentText()
+                crs=self.capa.crs()
+                if self.capa==self.cap2PanelTexto.currentData():
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                else:
+                    if crs.isGeographic():
+                        self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                        'The main layer is in geographic coordinates. Lat/Long The value will be processed in degrees', level=Qgis.Info, duration=7)
+                        unidad=1
+                    else:
+                        if crs.mapUnits() != QgsUnitTypes.DistanceMeters:
+                            self.iface.messageBar().pushMessage('Coordinate units will be considered in meters',\
+                            'For now, only units of the coordinate system in meters are considered', level=Qgis.Info, duration=7)
+                        unidad=self.tpUnit.currentText()
+                    if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
+                        self.cbTextPestilo.currentText()!='Separate frames':
+                        tp=textPanel(self.capa,'densidad valor', titulo,\
+                        [capa2,unidad,campo2],fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        estilo=estilot,icono=True,rutaIcono=self.ruta_icono,anchoP=ancho,altoP=alto,\
+                        direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    else:
+                        tp=textPanel(self.capa, 'densidad valor', titulo,[capa2,unidad,campo2],\
+                        fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
+            elif modo=='Entities contained at a distance. Buffer':
+                capa2=self.cap2PanelTexto.currentText()
+                dist=self.bufferDistance.value()
+                crs=self.capa.crs()
+                if self.capa==self.cap2PanelTexto.currentData():
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                else:
+                    if crs.isGeographic():
+                        self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                        'The main layer is in geographic coordinates. Lat/Long The value will'+\
+                        'be processed in degrees', level=Qgis.Info, duration=7)
+                    if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
+                        self.cbTextPestilo.currentText()!='Separate frames':
+                        tp=textPanel(self.capa,'buffer-contains', titulo,\
+                        [capa2,dist],fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        estilo=estilot,icono=True,rutaIcono=self.ruta_icono,anchoP=ancho,altoP=alto,\
+                        direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    else:
+                        tp=textPanel(self.capa, 'buffer-contains', titulo,[capa2,dist],\
+                        fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)
+            elif modo=='Entities contained at a distance that coincides with':
+                capa2=self.cap2PanelTexto.currentText()
+                dist=self.bufferDistance.value()
+                campo2=self.cam3PanelTexto.currentText()
+                valor=self.lineE1.text()
+                crs=self.capa.crs()
+                if self.capa==self.cap2PanelTexto.currentData():
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                else:
+                    if crs.isGeographic():
+                        self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                        'The main layer is in geographic coordinates. Lat/Long The value will'+\
+                        'be processed in degrees', level=Qgis.Info, duration=7)
+                    if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
+                        self.cbTextPestilo.currentText()!='Separate frames':
+                        tp=textPanel(self.capa,'buffer-contains-attrib', titulo,\
+                        [capa2,dist,campo2,valor],fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        estilo=estilot,icono=True,rutaIcono=self.ruta_icono,anchoP=ancho,altoP=alto,\
+                        direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    else:
+                        tp=textPanel(self.capa,'buffer-contains-attrib', titulo,[capa2,dist,campo2,valor],\
+                        fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)    
+            elif modo=='Sum of attributes of entities contained at a distance':
+                capa2=self.cap2PanelTexto.currentText()
+                dist=self.bufferDistance.value()
+                campo2=self.cam3PanelTexto.currentText()
+                layer2=self.cap2PanelTexto.currentData()
+                fields=layer2.fields()
+                field=fields.field(campo2)
+                crs=self.capa.crs()
+                if self.capa==self.cap2PanelTexto.currentData():
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                elif field.isNumeric() == False:
+                    self.iface.messageBar().pushMessage('ERROR',\
+                    'Select a numeric field', level=Qgis.Warning, duration=7)
+                else:
+                    if crs.isGeographic():
+                        self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                        'The main layer is in geographic coordinates. Lat/Long The value will'+\
+                        'be processed in degrees', level=Qgis.Info, duration=7)
+                    if self.checkBoxIcono.isChecked()==True and os.path.exists(self.ruta_icono) and\
+                        self.cbTextPestilo.currentText()!='Separate frames':
+                        tp=textPanel(self.capa,'buffer-contains-sum', titulo,\
+                        [capa2,dist,campo2,''],fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        estilo=estilot,icono=True,rutaIcono=self.ruta_icono,anchoP=ancho,altoP=alto,\
+                        direccionIcono=direcIcono,colorIcono=str(self.colorIcono))
+                    else:
+                        tp=textPanel(self.capa,'buffer-contains-sum', titulo,[capa2,dist,campo2,''],\
+                        fondTit=self.ctitPanelText.color(),colorTextTit=self.cTextTitPT.color(),\
+                        fondVal=self.cconPanelText.color(),colorTextVal=self.cTextConPT.color(),\
+                        suavizado=self.roundFrame.value(),estilo=estilot,anchoP=ancho,altoP=alto)   
+            
             if type(tp)==textPanel:
                 self.listaPaneles.append(tp)
                 #Disminuimos el numero de paneles disponibles
@@ -575,6 +729,7 @@ class dashDialog(DialogUi, DialogType):
                         self.listWidget.addItem(i.name())#lista de campos numericos para grafico series
                         self.listWidget2.addItem(i.name())#lista de campos numericos para grafico Barras
                     else:
+                        self.cam2Ind.addItem(i.name())#campo2 indicador
                         self.cam2PanelTexto.addItem(i.name())#panel texto
                         self.camXBar.addItem(i.name())
                         self.camXSeries.addItem(i.name())#campo categorico grafico series
@@ -594,6 +749,7 @@ class dashDialog(DialogUi, DialogType):
             self.listWidget2.clear()
             self.camXSeries.clear()
             self.cam1Ind.clear()
+            self.cam2Ind.clear()
             self.camYBar.clear()
             self.camXBar.clear()
             qfields=self.capa.fields()
@@ -606,6 +762,7 @@ class dashDialog(DialogUi, DialogType):
                         self.listWidget.addItem(i.name())
                         self.listWidget2.addItem(i.name())
                     else:
+                        self.cam2Ind.addItem(i.name())#campo2 indicador
                         self.cam2PanelTexto.addItem(i.name())
                         self.camXBar.addItem(i.name())
                         self.camXSeries.addItem(i.name())
@@ -618,17 +775,27 @@ class dashDialog(DialogUi, DialogType):
         try:
             if capa.isSpatial()==False:
                 self.cbModoPanelT.clear()
+                self.cbModoInd.clear()
                 listaFunciones=operations.getOperation('no spatial')
                 self.cbModoPanelT.addItems(listaFunciones)
+                listaFunInd=operations.getOperation('ind no spatial')
+                self.cbModoInd.addItems(listaFunInd)
             else:
                 if tipoGeom==QgsWkbTypes.PointGeometry or tipoGeom==QgsWkbTypes.LineGeometry:
                     self.cbModoPanelT.clear()
+                    self.cbModoInd.clear()
                     listaFunciones=operations.getOperation('line or point')
                     self.cbModoPanelT.addItems(listaFunciones)
+                    listaFunInd=operations.getOperation('ind line or point')
+                    self.cbModoInd.addItems(listaFunInd)
                 elif tipoGeom==QgsWkbTypes.PolygonGeometry:
                     self.cbModoPanelT.clear()
+                    self.cbModoInd.clear()
                     listaFunciones=operations.getOperation('polygon')
                     self.cbModoPanelT.addItems(listaFunciones)
+                    listaFunInd=operations.getOperation('ind polygon')
+                    self.cbModoInd.addItems(listaFunInd)
+                    
         except Exception as e:
             if self.logAcces:
                 self.log.writeLog(e)
@@ -667,25 +834,33 @@ class dashDialog(DialogUi, DialogType):
     
     #DEFINIMOS LA CAPA SECUNDARIA DE INDICADOR. LA CAPA QUE INTERSECTA
     def capaSecundariaInd(self):
-        if self.capa2ind.count()>0:
-            self.capa2ind.addItems([i.name() for i in self.listC])
+        if self.lc.count()>0 or self.lc.currentText()!= "":
+            self.capa2ind.clear()
+            for i in self.listC:
+    #            if i!=capaPrincipal:
+                try:
+                    if i.isSpatial():
+                        self.capa2ind.addItem(i.name(),i)
+                except:
+                    pass
             #Llenamos las listas de campos
-            capa= self.pry.mapLayersByName(self.capa2ind.currentText())[0]
-            qfields=capa.fields()
+            capa2=self.capa2ind.currentData()
+            qfields=capa2.fields()
+            self.cam2Ind.clear()
             if qfields.count()>0:
                 for i in qfields.toList():
-                    self.cam2Ind.addItem(i.name()) #indicador
+                    self.cam2Ind.addItem(i.name())
             self.capa2ind.currentTextChanged.connect(self.cambioCapaSecund)
     
     #Evento cuando seleccionamos otra capa secundaria.indicador
     def cambioCapaSecund(self):
-        capa=self.capa2ind.currentText()
-        capa=self.pry.mapLayersByName(capa)[0]
-        self.cam2Ind.clear()#vaciamos el listado de campos principal
-        qfields=capa.fields()
-        if qfields.count()>0:
-            for i in qfields.toList():
-                self.cam2Ind.addItem(i.name())#indicador
+        if self.capa2ind.count()>0:
+            capa=self.capa2ind.currentData()
+            self.cam2Ind.clear()#vaciamos el listado de campos principal
+            qfields=capa.fields()
+            if qfields.count()>0:
+                for i in qfields.toList():
+                    self.cam2Ind.addItem(i.name())#indicador
 
     def nombreCapaCambio(self):
         pass
@@ -928,89 +1103,258 @@ class dashDialog(DialogUi, DialogType):
 #Modalidades en Indicador: Valor en tabla de atributos,Densidad 
 #Entidades contenidas en seleccion,Entidades contenidas en seleccion con valor,
     def iniciarModalidadInd(self):
-        indice=self.cbModoInd.findText('Valor en tabla de atributos')
-        self.cbModoInd.setCurrentIndex(indice)
+        self.cbModoInd.setCurrentIndex(0)
         self.cam1Ind.setEnabled(True)
         self.cam2Ind.setEnabled(False)
         self.capa2ind.setEnabled(False)
         self.valorInd.setEnabled(False)
         self.unidadInd.setEnabled(False)
+        self.indBufferDistance.setEnabled(False)
         #EVENTOS
         self.cbModoInd.currentTextChanged.connect(self.cambioModoInd)
     
     def procesarIndicador(self):
-        #Disminuimos el numero de paneles disponibles
-        np=int(self.labelNp.text())-1
-        self.labelNp.setText(str(np))
-        #CREAMOS EL PANEL
-        titulo=self.lineEdit.text()
-        if titulo=='':
-            titulo='Indicador'
-        capa=self.capa.name()
         modo=self.cbModoInd.currentText()
         min=self.indMin.value()
         max=self.indMax.value()
         umbral=self.indUmbral_2.value()
-        if max!=min or min!=umbral:
-            if modo=='Valor en tabla de atributos':
-                campo=self.cam1Ind.currentText()
-                tp=indicadorPanel(self.canvas,self.capa,'atributo',titulo,[campo],umbral,[min,max])
-                self.listaPaneles.append(tp)
-            if modo=='Entidades contenidas en seleccion':
-                capa2=self.capa2ind.currentText()
-                tp=indicadorPanel(self.canvas,self.capa,'entid-selec-intersect',titulo,[capa2],umbral,[min,max])
-                self.listaPaneles.append(tp)
-            if modo=='Entidades contenidas en seleccion con valor':
-                capa2=self.capa2ind.currentText()
-                campo2=self.cam2Ind.currentText()
-                valor=self.valorInd.text()
-                tp=indicadorPanel(self.canvas,self.capa,'entid-selec-intersect-atrib',titulo,[capa2,campo2,valor],umbral,[min,max])
-                self.listaPaneles.append(tp)
-            if modo=='Densidad':
-                capa2=self.capa2ind.currentText()
-                unidad=self.unidadInd.currentText()
-                tp=indicadorPanel(self.canvas,self.capa,'densidad',titulo,[capa2,unidad],umbral,[min,max])
-                self.listaPaneles.append(tp)
-            if modo=='Densidad por valor':
-                capa2=self.capa2ind.currentText()
-                unidad=self.unidadInd.currentText()
-                campo2=self.cam2Ind.currentText()
-                tp=indicadorPanel(self.canvas,self.capa,'densidad valor',titulo,[capa2,unidad,campo2],umbral,[min,max])
-                self.listaPaneles.append(tp)
+        titulo=self.lineEdit.text()
+        estilo=self.cbIndEstilo.currentText()
+        campo=self.cam1Ind.currentText()
+        if self.cbIndThreshold.currentText()=='Value difference':
+            formatValue='false'
+        else:
+            formatValue='true'
+        
+        if titulo=='':
+            titulo='Indicador'
+        #Dimensiones
+        ancho= self.sizesPanels[self.cbSizePanel.currentText()][0]
+        alto= self.sizesPanels[self.cbSizePanel.currentText()][1]
+       
+        if max==min:
+            self.iface.messageBar().pushMessage('ERROR',\
+            'Assign a different value to the maximum and minimum value', level=Qgis.Warning, duration=7)
+        else:
+            try:
+                if modo=='Sum of an attribute':
+                    indp=indicadorPanel(self.capa,'atributo',titulo,[campo],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+
+                elif modo=='Entities contained in selection':
+                    capa2=self.capa2ind.currentText()
+                    if self.capa==self.capa2ind.currentData():
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                    else:
+                        indp=indicadorPanel(self.capa,'entid-selec-intersect',titulo,[capa2],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+
+                elif modo=='Entities contained. count by attribute that coincides with':
+                    capa2=self.capa2ind.currentText()
+                    campo2=self.cam2Ind.currentText()
+                    valor=self.valorInd.text()
+                    if self.capa==self.capa2ind.currentData():
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                    else:
+                        indp=indicadorPanel(self.capa,'entid-selec-intersect-atrib',titulo,[capa2,campo2,valor],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+
+                elif modo=='Number of entities in the area. Density':
+                    capa2=self.capa2ind.currentText()
+                    crs=self.capa.crs()
+                    if self.capa==self.capa2ind.currentData():
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                    else:
+                        if crs.isGeographic():
+                            self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                            'The main layer is in geographic coordinates. Lat/Long The value will be processed in degrees', level=Qgis.Info, duration=7)
+                            unidad=1
+                        else:
+                            if crs.mapUnits() != QgsUnitTypes.DistanceMeters:
+                                self.iface.messageBar().pushMessage('Coordinate units will be considered in meters',\
+                                'For now, only units of the coordinate system in meters are considered', level=Qgis.Info, duration=7)
+                            unidad=self.unidadInd.currentText()
+                        indp=indicadorPanel(self.capa,'densidad',titulo,[capa2,unidad],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+
+                elif modo=='Sum of attribute between area. Density':
+                    capa2=self.capa2ind.currentText()
+                    campo2=self.cam2Ind.currentText()
+                    crs=self.capa.crs()
+                    if self.capa==self.capa2ind.currentData():
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                    else:
+                        if crs.isGeographic():
+                            self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                            'The main layer is in geographic coordinates. Lat/Long The value will be processed in degrees', level=Qgis.Info, duration=7)
+                            unidad=1
+                        else:
+                            if crs.mapUnits() != QgsUnitTypes.DistanceMeters:
+                                self.iface.messageBar().pushMessage('Coordinate units will be considered in meters',\
+                                'For now, only units of the coordinate system in meters are considered', level=Qgis.Info, duration=7)
+                            unidad=self.unidadInd.currentText()
+                        indp=indicadorPanel(self.capa,'densidad',titulo,[capa2,unidad,campo2],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+
+                elif modo=='Entities contained at a distance. Buffer':
+                    capa2=self.capa2ind.currentText()
+                    dist=self.indBufferDistance.value()
+                    crs=self.capa.crs()
+                    if self.capa==self.capa2ind.currentData():
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                    else:
+                        if crs.isGeographic():
+                            self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                            'The main layer is in geographic coordinates. Lat/Long The value will'+\
+                            'be processed in degrees', level=Qgis.Info, duration=7)
+                        indp=indicadorPanel(self.capa,'buffer-contains',titulo,[capa2,dist],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+
+                elif modo=='Entities contained at a distance that coincides with':
+                    capa2=self.capa2ind.currentText()
+                    dist=self.indBufferDistance.value()
+                    campo2=self.cam2Ind.currentText()
+                    valor=self.valorInd.text()
+                    crs=self.capa.crs()
+                    if self.capa==self.capa2ind.currentData():
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                    else:
+                        if crs.isGeographic():
+                            self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                            'The main layer is in geographic coordinates. Lat/Long The value will'+\
+                            'be processed in degrees', level=Qgis.Info, duration=7)
+                        indp=indicadorPanel(self.capa,'buffer-contains-attrib',titulo,[capa2,dist,campo2,valor],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+
+                elif modo=='Sum of attributes of entities contained at a distance':
+                    capa2=self.capa2ind.currentText()
+                    dist=self.indBufferDistance.value()
+                    campo2=self.cam2Ind.currentText()
+                    fields=self.capa2ind.currentData().fields()
+                    field=fields.field(campo2)
+                    crs=self.capa.crs()
+                    if self.capa==self.capa2ind.currentData():
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a different layer than the main layer', level=Qgis.Warning, duration=7)
+                    elif field.isNumeric() == False:
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Select a numeric field', level=Qgis.Warning, duration=7)
+                    else:
+                        if crs.isGeographic():
+                            self.iface.messageBar().pushMessage('Layer in geographic coordinates',\
+                            'The main layer is in geographic coordinates. Lat/Long The value will'+\
+                            'be processed in degrees', level=Qgis.Info, duration=7)
+                        indp=indicadorPanel(self.capa,'buffer-contains-sum',titulo,[capa2,dist,campo2,''],umbral,[min,max],estilo=estilo,\
+                        anchoP=ancho,altoP=alto,colorBar=self.indBarColor.color(),colorBackground=self.indBackColor.color(),\
+                        colorTit=self.indTitleColor.color(),sizeTitle=self.indTitleSize.value(),\
+                        colorBase=self.indBaseColor.color(),colorLine=self.indLineColor.color(),\
+                        sizeLabel=self.indLabelSize.value(),colorFinal=self.indFinalColor.color(),\
+                        colorValue=self.indColorValue.color(),colorMark=self.indMarkColor.color(),relative=formatValue)
+                        
+                if type(indp)==indicadorPanel:
+                    self.listaPaneles.append(indp)
+                    #Disminuimos el numero de paneles disponibles
+                    np=int(self.labelNp.text())-1
+                    self.labelNp.setText(str(np))
+            except Exception as e:
+                if self.logAcces:
+                    self.log.writeLog(str(e))
     
     def cambioModoInd(self):
         modo=self.cbModoInd.currentText()
-        if modo=='Valor en tabla de atributos':
+        if modo=='Sum of an attribute':
             self.cam1Ind.setEnabled(True)
             self.cam2Ind.setEnabled(False)
             self.capa2ind.setEnabled(False)
             self.valorInd.setEnabled(False)
             self.unidadInd.setEnabled(False)
-        elif modo=='Entidades contenidas en seleccion':
+            self.indBufferDistance.setEnabled(False)
+        elif modo=='Entities contained in selection':
             self.cam1Ind.setEnabled(False)
             self.cam2Ind.setEnabled(False)
             self.capa2ind.setEnabled(True)
             self.valorInd.setEnabled(False)
             self.unidadInd.setEnabled(False)
-        elif modo=='Entidades contenidas en seleccion con valor':
+            self.indBufferDistance.setEnabled(False)
+        elif modo=='Entities contained. count by attribute that coincides with':
             self.cam1Ind.setEnabled(False)
             self.cam2Ind.setEnabled(True)
             self.capa2ind.setEnabled(True)
             self.valorInd.setEnabled(True)
             self.unidadInd.setEnabled(False)
-        elif modo=='Densidad':
+            self.indBufferDistance.setEnabled(False)
+        elif modo=='Entities contained at a distance. Buffer':
+            self.cam1Ind.setEnabled(False)
+            self.cam2Ind.setEnabled(False)
+            self.capa2ind.setEnabled(True)
+            self.valorInd.setEnabled(False)
+            self.unidadInd.setEnabled(False)
+            self.indBufferDistance.setEnabled(True)
+        elif modo=='Entities contained at a distance that coincides with':
+            self.cam1Ind.setEnabled(False)
+            self.cam2Ind.setEnabled(True)
+            self.capa2ind.setEnabled(True)
+            self.valorInd.setEnabled(True)
+            self.unidadInd.setEnabled(False)
+            self.indBufferDistance.setEnabled(True)
+        elif modo=='Sum of attributes of entities contained at a distance':
+            self.cam1Ind.setEnabled(False)
+            #update cam2Ind only numeric field
+            self.cam2Ind.setEnabled(True)
+            self.capa2ind.setEnabled(True)
+            self.valorInd.setEnabled(False)
+            self.unidadInd.setEnabled(False)
+            self.indBufferDistance.setEnabled(True)
+        elif modo=='Number of entities in the area. Density':
             self.cam1Ind.setEnabled(False)
             self.cam2Ind.setEnabled(False)
             self.capa2ind.setEnabled(True)
             self.valorInd.setEnabled(False)
             self.unidadInd.setEnabled(True)
-        elif modo=='Densidad por valor':
+            self.indBufferDistance.setEnabled(False)
+        elif modo=='Sum of attribute between area. Density':
             self.cam1Ind.setEnabled(False)
+            #update cam2Ind only numeric field
             self.cam2Ind.setEnabled(True)
             self.capa2ind.setEnabled(True)
             self.valorInd.setEnabled(False)
             self.unidadInd.setEnabled(True)
-    
+            self.indBufferDistance.setEnabled(False)
+        
     def capaAdicionada(self,listCapas):
         listc=[] #Lista de capas vectoriales
         for i in listCapas:

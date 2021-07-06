@@ -28,6 +28,17 @@ class operations():
     'Statistics. Selection that coincides with','Total selected entities','Entities contained at a distance. Buffer',\
     'Entities contained at a distance that coincides with','Sum of attributes of entities contained at a distance']
     
+    operations_ind_polygon=['Sum of an attribute',\
+    'Entities contained in selection',\
+    'Entities contained. count by attribute that coincides with','Number of entities in the area. Density',\
+    'Sum of attribute between area. Density']
+    
+    operations_ind_nospatial=['Sum of an attribute']
+    
+    operations_ind_nopolygon=['Sum of an attribute',\
+    'Entities contained at a distance. Buffer',\
+    'Entities contained at a distance that coincides with','Sum of attributes of entities contained at a distance']
+    
     def __init__(self,panel,operation,modeE='processing'):
         self.listOperations={'atributo':self.attribute,'Porcentaje':self.percentage,\
     'math-atributo':self.statisticsAttrib,'entid_seleccionadas':self.selection,\
@@ -54,36 +65,45 @@ class operations():
         elif type=='no spatial':
             listOperat=operation.operations_nospatial
             return listOperat
+        elif type=='ind no spatial':
+            listOperat=operation.operations_ind_nospatial
+            return listOperat
+        elif type=='ind polygon':
+            listOperat=operation.operations_ind_polygon
+            return listOperat
+        elif type=='ind line or point':
+            listOperat=operation.operations_ind_nopolygon
+            return listOperat
     
     def attribute(self):
         campo=self.expression[0]
         if self.capa.selectedFeatureCount()==0:
             calculo=sum([f[campo] for f in self.capa.getFeatures() if type(f[campo])==int or type(f[campo])==float ])
-            val='<p class='+'"valor"><strong>'+str(round(calculo,2))+'</strong></p>'+'\n'
+            val=calculo
         elif self.capa.selectedFeatureCount()==1:
             entidad=list(self.capa.getSelectedFeatures())[0]
             if type(entidad[campo])==int or type(entidad[campo])==float:
                 calculo=entidad[campo]
             else:
                 calculo=0
-            val='<p class='+'"valor"><strong>'+str(round(calculo,2))+'</strong></p>'+'\n'
+            val=calculo
         elif self.capa.selectedFeatureCount()>1:
             calculo=sum([f[campo] for f in self.capa.getSelectedFeatures() if type(f[campo])==int or type(f[campo])==float])
-            val='<p class='+'"valor"><strong>'+str(round(calculo,2))+'</strong></p>'+'\n'
+            val=calculo
         return val
     
     def percentage(self):
         campo=self.expression[0]
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'100 %'+'</strong></p>'+'\n'
+            val=100
         elif self.capa.selectedFeatureCount()>0:
             vp=queriesData.porcentaje(self.capa.getSelectedFeatures(),campo,self.capa)
-            val='<p class='+'"valor"><strong>'+vp+' %'+'</strong></p>'+'\n'
+            val=vp
         return val
     
     def selection(self):
         calculo=self.capa.selectedFeatureCount()
-        val='<p class='+'"valor"><strong>'+str(calculo)+'</strong></p>'+'\n'
+        val=calculo
         return val
     
     def statisticsAttrib(self):
@@ -107,11 +127,11 @@ class operations():
         pry=QgsProject.instance()
         capa2=pry.mapLayersByName(self.expression[0])[0]
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'0'+'</strong></p>'+'\n'
+            val=0
         elif self.capa.selectedFeatureCount()>0:
             if self.spatialOperation=='processing':
                 calculo=spatialQueries.containsCountProcess(self.capa,capa2)
-                val='<p class='+'"valor"><strong>'+str(calculo)+'</strong></p>'+'\n'
+                val=calculo
         return val
     
     def countsAttribContains(self):
@@ -120,29 +140,29 @@ class operations():
         campo=self.expression[1]
         atributo=self.expression[2]
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'0'+'</strong></p>'+'\n'
+            val=0
         elif self.capa.selectedFeatureCount()>0:
             if self.spatialOperation=='processing':
                 calculo=spatialQueries.containsCountAttribProcess(self.capa,capa2,campo,atributo)
-                val='<p class='+'"valor"><strong>'+str(round(calculo,3))+'</strong></p>'+'\n'
+                val=calculo
         return val
     
     def density(self):
         pry=QgsProject.instance()
-        capa2=pry.mapLayersByName(self.expresion[0])[0]
+        capa2=pry.mapLayersByName(self.expression[0])[0]
         unidad=self.expression[1]
         #Definimos la unidad de medida
         divisor=1
-        if unidad=='hectareas':
+        if unidad=='hectarea':
             divisor=10000
         elif unidad=='km2':
             divisor=1000000
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'0'+'</strong></p>'+'\n'
+            val=0
         elif self.capa.selectedFeatureCount()>0:
             if self.spatialOperation=='processing':
                 calculo=spatialQueries.densityProcess(self.capa,capa2,divisor)
-                val='<p class='+'"valor"><strong>'+str(round(calculo,4))+'</strong></p>'+'\n'
+                val=calculo
         return val
     
     def densityValue(self):
@@ -152,16 +172,16 @@ class operations():
         campo=self.expression[2]
         #Definimos la unidad de medida
         divisor=1
-        if unidad=='hectareas':
+        if unidad=='hectarea':
             divisor=10000
         elif unidad=='km2':
             divisor=1000000
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'0'+'</strong></p>'+'\n'
+            val=0
         elif self.capa.selectedFeatureCount()>0:
             if self.spatialOperation=='processing':
-                calculo=spatialQueries.densityAttribProcess(capa,capa2,campo,divisor)
-                val='<p class='+'"valor"><strong>'+str(round(calculo,4))+'</strong></p>'+'\n'
+                calculo=spatialQueries.densityAttribProcess(self.capa,capa2,campo,divisor)
+                val=calculo
         return val
     
     def countContainsBuffer(self):
@@ -169,39 +189,39 @@ class operations():
         capa2=pry.mapLayersByName(self.expression[0])[0]
         distancia=self.expression[1]
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'0'+'</strong></p>'+'\n'
+            val=0
         elif self.capa.selectedFeatureCount()>0:
             if self.spatialOperation=='processing':
-                calculo=spatialQueries.bufferCountProcess(capa,capa2,distance)
-                val='<p class='+'"valor"><strong>'+str(calculo)+'</strong></p>'+'\n'
+                calculo=spatialQueries.bufferCountProcess(self.capa,capa2,distancia)
+                val=calculo
         return val
     
     def countAttribBuffer(self):
         pry=QgsProject.instance()
-        capa2=pry.mapLayersByName(self.expresion[0])[0]
+        capa2=pry.mapLayersByName(self.expression[0])[0]
         distancia=self.expression[1]
         campo=self.expression[2]
         atributo=self.expression[3]
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'0'+'</strong></p>'+'\n'
+            val=0
         elif self.capa.selectedFeatureCount()>0:
             if self.spatialOperation=='processing':
                 calculo=spatialQueries.bufferAttribProcess(self.capa,capa2,distancia,campo,atributo,tipo='conteo')
-                val='<p class='+'"valor"><strong>'+str(calculo)+'</strong></p>'+'\n'
+                val=calculo
         return val
         
     def sumAttribBuffer(self):
         pry=QgsProject.instance()
-        capa2=pry.mapLayersByName(self.expresion[0])[0]
+        capa2=pry.mapLayersByName(self.expression[0])[0]
         distancia=self.expression[1]
         campo=self.expression[2]
         atributo=self.expression[3]
         if self.capa.selectedFeatureCount()==0:
-            val='<p class='+'"valor"><strong>'+'0'+'</strong></p>'+'\n'
+            val=0
         elif self.capa.selectedFeatureCount()>0:
             if self.spatialOperation=='processing':
                 calculo=spatialQueries.bufferAttribProcess(self.capa,capa2,distancia,campo,atributo,tipo='sum')
-                val='<p class='+'"valor"><strong>'+str(calculo)+'</strong></p>'+'\n'
+                val=calculo
         return val
             
     

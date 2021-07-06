@@ -13,8 +13,9 @@
  """
 from qgis.core import QgsProject, QgsProcessingFeatureSourceDefinition,\
                QgsCoordinateTransform, QgsGeometry, QgsSpatialIndex,QgsFeatureRequest,\
-               QgsGeometryEngine,QgsProcessingFeedback
+               QgsGeometryEngine,QgsProcessingFeedback, QgsVectorLayer, QgsField, QgsFeature
 import processing
+from qgis.PyQt.QtCore import QVariant
 #import ..decorator
 #from ..decorator.medirTiempo import medirTiempo
 
@@ -294,11 +295,11 @@ class spatialQueries:
         processing.run(alg_name,param,feedback=feedback)
 
         ids=capa2.selectedFeatureIds()
-        idCampo=capa.fields().indexOf(campo)
+        idCampo=capa2.fields().indexOf(campo)
         request= QgsFeatureRequest().setFilterFids(ids)
         request.setFlags(QgsFeatureRequest.NoGeometry )
         request.setSubsetOfAttributes([idCampo])
-        listResult=capa.getFeatures(request)
+        listResult=capa2.getFeatures(request)
         resultado=0
         if tipo=='conteo':
             for i in listResult:
@@ -314,4 +315,4 @@ class spatialQueries:
         else:
             capa2.removeSelection()
         del(capaTemp)
-        return conteo    
+        return resultado    

@@ -45,22 +45,13 @@ class seriesPanel(QgsHtmlAnnotation):
 
         self.expresion=expression
         self.canvas = canvas
-        self.setMapLayer(self.capa)
         self.anchop=anchoP
         self.altop=altoP
         #guardamos aqui el ancho y alto luego de considerar 
         #los espacios por los estilos html 
-        self.anchoF=310
-        self.altoF=130
         self.iniHtml=''
-        self.ahtml=None
         
         self.tempf=None
-        
-        #DIMENSIONES GRAFICO
-        #RELACION 50%
-        self.width='310'
-        self.height='130'
     
         self.setFrameSizeMm(QSizeF(self.anchop,self.altop))
         self.setFrameOffsetFromReferencePoint(QPointF(0, 0))
@@ -99,7 +90,6 @@ class seriesPanel(QgsHtmlAnnotation):
     
     def cierreHtml(self):
         self.tempf=tempfile.NamedTemporaryFile(mode='w+t',prefix='qd',suffix='.html',delete=False)
-        print(self.tempf.name)
         self.tempf.seek(0)
         self.tempf.write(self.style.html)
         self.tempf.close()

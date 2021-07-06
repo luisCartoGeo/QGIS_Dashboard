@@ -88,14 +88,13 @@ class styleBarPanel():
             labels=utils.splitText(data.keys())
         else:
             labels=data.keys()
-        print(labels)
+
         #ESCRIBIR CAMPOX EN UN STRING LOS VALORES
         vx="[' "+"','".join(labels)+"']"
         #ESCRIBIR CAMPOY EN UN STRING LOS VALORES
         vy="["+','.join(str(n) for n in data.values())+']'
         self.defData([vx,vy])
         self.defTitle()
-        print(self.title)
         self.close()
     
     def sumAttrib(self):

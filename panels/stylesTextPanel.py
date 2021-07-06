@@ -77,7 +77,7 @@ class styleTextPanel():
         '  margin-top: 5px;'+'\n'+\
         '  margin-right: 5px;'+'\n'+\
         '  font-family:Arial Black,Sans-serif;'+'\n'+\
-        '  font-size: 14vw;'+'\n'+\
+        '  font-size: 13vw;'+'\n'+\
         '  display: block;'+'\n'+\
         '  border-left-style: solid;'+'\n'+\
         '  border-width: thick;'+'\n'+\
@@ -121,7 +121,7 @@ class styleTextPanel():
         '  padding-top: 4px;'+'\n'+\
         '  margin-top: 0px;'+'\n'+\
         '  font-family:Arial Black,Sans-serif;'+'\n'+\
-        '  font-size: 15vw;'+'\n'+\
+        '  font-size: 14vw;'+'\n'+\
         '  display: block;'+'\n'+\
         '  background-color: '+self.colorValue+';'+'\n'+\
         '  text-align: center;'+'\n'+\
@@ -161,7 +161,7 @@ class styleTextPanel():
         '  font-family:Arial,Sans-serif;'+'\n'+\
         '  display: block;}'+'\n'+\
         '.valor{'+'\n'+\
-        '  font-size:18vw;'+'\n'+\
+        '  font-size:16vw;'+'\n'+\
         '  padding-top: 5px;'+'\n'+\
         '  margin-top:0px;'+'\n'+\
         '  margin-left:7px;'+'\n'+\
@@ -207,7 +207,6 @@ class styleTextPanel():
     
     def closeDIV(self):
         if self.style=='United frames' and self.icon==True and os.path.exists(self.iconPath):
-            print('entrp a cierre div',self.iconColor)
             textIm='.r{filter:invert('+str(self.iconColor)+');'+'\n'+\
             'padding-top: 2px;'+'\n'+\
             'margin-top: 0px;'+'\n'+\
@@ -222,7 +221,6 @@ class styleTextPanel():
             'height='+'"27"'+'></div>'
         elif self.style=='One frame' and\
         self.icon==True and os.path.exists(self.iconPath):
-            print('entro cierre div entero')
             textIm='.r{filter:invert('+str(self.iconColor)+');'+'\n'+\
             'height:100%;}'+'\n'+\
             '</style>'+'\n'+\

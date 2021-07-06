@@ -49,10 +49,10 @@ class queriesData:
         if total==None:
             sumat=sum([f[campo] for f in capa.getFeatures() if type(f[campo])==int or type(f[campo])==float ])
             valorSelec= sum([f[campo] for f in listaEntidades if type(f[campo])==int or type(f[campo])==float ])
-            resultado=str(round((valorSelec*100)/sumat,2))
+            resultado=(valorSelec*100)/sumat
         else:
             valorSelec= sum([f[campo] for f in listaEntidades if type(f[campo])==int or type(f[campo])==float ])
-            resultado=str(round((valorSelec*100)/total,2))
+            resultado=(valorSelec*100)/total
         return resultado
     
     @staticmethod

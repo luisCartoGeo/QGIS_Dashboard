@@ -30,14 +30,14 @@ import os
 
 class adminPanel():
     def __init__(self,ubicacion='topLeft'):
-        pry= QgsProject.instance()
+        self.pry= QgsProject.instance()
         self.canvas = None
-        self.manejador=pry.annotationManager()
+        self.manejador=self.pry.annotationManager()
         self.posicion=ubicacion #posicion por defecto de las disponibles
         self.paneles=[]
         self.tempPanels=[]
         self.manejador.annotationAboutToBeRemoved.connect(self.desconecPanel)
-        pry.cleared.connect(self.delClose)
+        self.pry.cleared.connect(self.delClose)
         self.globalToolTip=False
         self.globalBordeMarco=True
         
@@ -48,7 +48,6 @@ class adminPanel():
         self.altoP=None
         
         self.log=logControl()
-        print('log es ',self.log)
         self.logAcces=self.log.canWriteLog()
         
     def init(self,canvas):
@@ -62,11 +61,8 @@ class adminPanel():
         #Dimensiones de los paneles
         self.anchoP=anchop
         self.altoP=altop
-        print(self.dpi)
         self.altomm=round((self.altoScreen*25)/self.dpi,2)
         self.anchomm=round((self.anchoScreen*25)/self.dpi,2)
-        print('ancho mm',self.anchomm)
-        print('ancho p',self.xp(self.anchoP))
     
     def desconecPanel(self,tp):
         try:
@@ -105,9 +101,6 @@ class adminPanel():
     def placePanels(self):
         try:
             if len(self.tempPanels)>0:
-                print('en ubicar paneles ',self.posicion)
-                print(self.posicion in self.listpositions)
-                print(self.listpositions[self.posicion])
                 self.listpositions[self.posicion]()
                 self.tempPanels.clear()
                 return True
@@ -118,29 +111,23 @@ class adminPanel():
                 self.log.writeLog('Error al ubicar panel en admin '+str(e))
         
     def topLeft(self):
+        crs=self.pry.crs()
         x=0
         for e,i in enumerate(self.tempPanels):
             if e==0:
                 y=e
             else:
                 y=round(self.yp(e*self.altoP),4)
-            print(x,y)
             #Quitando la linea del borde del marco
             if self.globalBordeMarco==False:
                 i.fillSymbol().setOpacity(0.0)
-            capa=i.capa
-            geo=capa.getFeature(0).geometry()
-            rec=geo.boundingBox()
-            punto=rec.center()
-            i.setMapPosition(punto)
-            i.setMapPositionCrs(QgsCoordinateReferenceSystem(capa.crs()))
             self.manejador.addAnnotation(i)
+            i.setHasFixedMapPosition(False)
+            i.setRelativePosition(QtCore.QPointF(x, y))
             ai=QgsMapCanvasAnnotationItem(i, self.canvas)
             if self.globalToolTip==True:
                 nombre=i.capa.name()
                 ai.setToolTip("<strong>"+nombre+"</strong>")
-            i.setHasFixedMapPosition(False)
-            i.setRelativePosition(QtCore.QPointF(x, y))
             self.paneles.append(i)
             #self.paneles.append(ai)
     
@@ -153,12 +140,6 @@ class adminPanel():
                 y=e
             else:
                 y=round(self.yp(e*self.altoP),4)
-            capa=i.capa
-            geo=capa.getFeature(0).geometry()
-            rec=geo.boundingBox()
-            punto=rec.center()
-            i.setMapPosition(punto)
-            i.setMapPositionCrs(QgsCoordinateReferenceSystem(capa.crs()))
             self.manejador.addAnnotation(i)
             ai=QgsMapCanvasAnnotationItem(i, self.canvas)
             if self.globalToolTip==True:
@@ -170,7 +151,6 @@ class adminPanel():
     
     def bottomLeft(self):
         x=0
-        print('bottom left',x)
         for e,i in enumerate(self.tempPanels,1):
             y=1-round(self.yp(e*self.altoP),4)
             capa=i.capa
@@ -209,7 +189,6 @@ class adminPanel():
             self.paneles.append(i)
             
     def horizontalBottom(self):
-        print('horizonatla bottom')
         y=1-round(self.yp(self.altoP),4)
         for e,i in enumerate(self.tempPanels):
             if e==0:
@@ -264,7 +243,6 @@ class adminPanel():
         dir=tempfile.gettempdir()
         lista=[]
         for f in glob.glob(os.path.join(dir,"qd*html")):
-            print(f)
             lista.append(f)
         if len(lista)>0:
             for f in lista:

@@ -27,7 +27,7 @@ from ..calculations.spatialQuery import spatialQueries
 import tempfile
 
 class textPanel(QgsHtmlAnnotation):
-    def __init__(self,canvas,layer,type,title,expression,position='top-left',anchoP=40,altoP=30,\
+    def __init__(self,layer,type,title,expression,position='top-left',anchoP=40,altoP=30,\
     fondTit='black',colorTextTit='white',fondVal='lightblue', colorTextVal='black',\
     suavizado=0,estilo='cuadrado',icono=False,rutaIcono=None,toolTip=False,\
     direccionIcono='center',colorIcono=0):
@@ -37,8 +37,8 @@ class textPanel(QgsHtmlAnnotation):
         
         self.spatialOperation='processing'
         self.tipo= type
+        
         self.expresion=expression
-        self.canvas = canvas
         
         self.title=title
         self.estilo=estilo
@@ -84,7 +84,6 @@ class textPanel(QgsHtmlAnnotation):
         self.indiceE=indexS
         
     def conectar(self):
-        print('actualizar')
         self.capa.selectionChanged.connect(self.updateValue)
     
     def desconectar(self):
@@ -93,12 +92,23 @@ class textPanel(QgsHtmlAnnotation):
     def defValor(self):
         calculador=operations(self,self.tipo)
         val=calculador.listOperations[self.tipo]()
-        return val
+        if self.tipo=='atributo' or self.tipo=='buffer-contains-sum':
+            valor= '<p class='+'"valor"><strong>'+str(round(val,3))+'</strong></p>'+'\n'
+        elif self.tipo=='Porcentaje':
+            valor='<p class='+'"valor"><strong>'+str(round(val,3))+' %'+'</strong></p>'+'\n'
+        elif self.tipo=='math-atributo':
+            valor=val
+        elif self.tipo=='entid_seleccionadas' or self.tipo=='entid-selec-intersect' or\
+        self.tipo=='entid-selec-intersect-atrib' or self.tipo=='buffer-contains' or\
+        self.tipo=='buffer-contains-attrib':
+            valor='<p class='+'"valor"><strong>'+str(val)+'</strong></p>'+'\n'
+        elif self.tipo=='densidad' or self.tipo=='densidad valor':
+            valor='<p class='+'"valor"><strong>'+str(round(val,6))+'</strong></p>'+'\n'
+        return valor
         
     def cierreHtml(self):
         texto="0"
         self.tempf=tempfile.NamedTemporaryFile(mode='w+t',prefix='qd',suffix='.html',delete=False)
-        print(self.tempf.name)
         self.tempf.seek(0)
         self.tempf.write(self.style.html)
         self.tempf.close()

@@ -21,7 +21,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
+from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, QPointF
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QLabel,QDoubleSpinBox, QGraphicsItem,\
      QGraphicsOpacityEffect, QMessageBox 
@@ -179,6 +179,13 @@ class QGISDashboard:
             callback=self.run,
             whats_this=self.tr(u'Allows the construction and management of Dashboards'),
             parent=self.iface.mainWindow())
+        icon_fix=self.dir+'//fix.png'
+        self.add_action(
+            icon_fix,
+            text=self.tr(u'Fix / Release'),
+            callback=self.fixRelease,
+            whats_this=self.tr(u'Fixes on-screen panels or releases them to map coordinates'),
+            parent=self.iface.mainWindow())
         self.ltrans=QLabel('Transparency')
         self.transparency=QDoubleSpinBox()
         self.transparency.setRange(0.000,1.000)
@@ -191,11 +198,10 @@ class QGISDashboard:
         self.actionTransparency=self.iface.addToolBarWidget(self.transparency)
         self.actions.append(self.labelT)
         self.actions.append(self.actionTransparency)
-        
+
         self.manager=adminPanel(self.iface.mapCanvas())
         # will be set False in run()
         self.first_start = True
-
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -204,8 +210,45 @@ class QGISDashboard:
                 self.tr(u'&QGISDashboard'),
                 action)
             self.iface.removeToolBarIcon(action)
-            
-
+    
+    def fixRelease(self):
+        canvas=self.iface.mapCanvas()
+        height=canvas.height()
+        width=canvas.width()
+        pry=QgsProject.instance()
+        crs=pry.crs()
+        transform=canvas.getCoordinateTransform()
+        list_ai=canvas.annotationItems()
+        listPanels=self.manager.paneles
+#        listPanels=[]
+#        for j,i in enumerate(list_ai):
+#            a=i.annotation()
+#            if type(a)==textPanel or type(a)==seriesPanel\
+#            or type(a)==indicadorPanel or type(a)==barrasPanel:
+#                if a in listPanels:
+#                    continue
+#                else:
+#                    listPanels.append(a)
+        if len(listPanels)>0:
+            for a in listPanels:
+                if a.hasFixedMapPosition ()==False:
+                    x=a.relativePosition ().x()
+                    y=a.relativePosition ().y()
+                    xp=x*height
+                    yp=y*width
+                    p=transform.toMapCoordinates(xp,yp)
+                    a.setMapPositionCrs (crs)
+                    a.setMapPosition (p)
+                    a.setHasFixedMapPosition(True)
+                else:
+                    pm=a.mapPosition()
+                    p=transform.transform(pm)
+                    a.setHasFixedMapPosition(False)
+                    a.setFrameOffsetFromReferencePoint(QPointF(0,0))
+                    x=p[0]/height
+                    y=p[1]/width
+                    a.setRelativePosition(QPointF(x,y))
+        
     def changeTrans(self):
         """
         Allows to modify the transparency of the panels
