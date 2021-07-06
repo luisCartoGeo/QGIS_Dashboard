@@ -1,42 +1,25 @@
-<html>
-<body>
-<h3>Plugin Builder Results</h3>
+<h1># QGIS_Dashboard</h1><br>
+<h2><b>Repository of the plugin code for building Dashboards in QGIS</b></h2><br>.
+The purpose of the <strong>QGIS Dashboard</strong> plugin is to allow the creation of dashboards on the QGIS screen.<br><br>
+<hr></hr>
+<h2>THIS PLUGIN IS IN DEVELOPMENT (PRODUCTION)</H2>.
+<img width="80%" src="https://github.com/luisCartoGeo/QGIS_Dashboard/blob/main/trabajando.gif" style="max-width:80%;">
+<hr></hr>
+The <strong>Dashboards</strong> are built by creating panels which will contain indicators or graphs, the panels are customizable, the user can move, delete, resize using the QGIS annotation tools.<br><br>
+This plugin leverages and extends through Python the <strong>Html Annotations</strong> of QGIS to give them more functionality, display graphs, respond to events.
 
-Congratulations! You just built a plugin for QGIS!<br/><br />
+<h2><strong>Installation and requirements</strong></h2>.
+This plugin has <B>NO</B> special requirements, simply install on a QGIS3.10 version or higher.
 
-<div id='help' style='font-size:.9em;'>
-Your plugin <b>QGISDashboard</b> was created in:<br>
-&nbsp;&nbsp;<b>E:/videoconferencias/Dashboard2/plugin\qgis_dashboard</b>
-<p>
-Your QGIS plugin directory is located at:<br>
-&nbsp;&nbsp;<b>C:/Users/Luis Eduardo/AppData/Roaming/QGIS/QGIS3/profiles/luis2/python/plugins</b>
-<p>
-<h3>What's Next</h3>
-<ol>
-    <li>If resources.py is not present in your plugin directory, compile the resources file using pyrcc5 (simply use <b>pb_tool</b> or <b>make</b> if you have automake)
-    <li>Optionally, test the generated sources using <b>make test</b> (or run tests from your IDE)
-    <li>Copy the entire directory containing your new plugin to the QGIS plugin directory (see Notes below)
-    <li>Test the plugin by enabling it in the QGIS plugin manager
-    <li>Customize it by editing the implementation file <b>QGIS_Dashboard.py</b>
-    <li>Create your own custom icon, replacing the default <b>icon.png</b>
-    <li>Modify your user interface by opening <b>QGIS_Dashboard_dialog_base.ui</b> in Qt Designer
-</ol>
-Notes:
-<ul>
-    <li>You can use <b>pb_tool</b> to compile, deploy, and manage your plugin. Tweak the <i>pb_tool.cfg</i> file included with your plugin as you add files. Install <b>pb_tool</b> using 
-        <i>pip</i> or <i>easy_install</i>. See <b>http://loc8.cc/pb_tool</b> for more information.
-    <li>You can also use the <b>Makefile</b> to compile and deploy when you
-        make changes. This requires GNU make (gmake). The Makefile is ready to use, however you 
-        will have to edit it to add addional Python source files, dialogs, and translations.
-</ul>
-</div>
-<div style='font-size:.9em;'>
-<p>
-For information on writing PyQGIS code, see <b>http://loc8.cc/pyqgis_resources</b> for a list of resources.
-</p>
-</div>
-<p>
-&copy;2011-2019 GeoApt LLC - geoapt.com 
-</p>
-</body>
-</html>
+<h1><b>User interface</b></h1>.
+<img width="100%" src="https://user-images.githubusercontent.com/79421833/122484184-1c37c280-cfa2-11eb-9545-56e7be7a38ee.jpg" style="max-width:100%;">
+
+<h1><b>Graphs and indicators</h1></b>.
+So far the plugin has four types of dashboards:
+<ul><li><b>Text panels:</b> they display a value or indicator of a dataset or spatial query. This panel although simple, presents the widest variety of styles and configurations. The value displayed can come from a statistical summary of a dataset or a spatial query. The spatial query options will vary depending on the geometry of the layer being queried. If it is a <strong>polygon</strong> layer you can query the contained entities belonging to another layer, you can also query the entities contained at a specified distance from the selected entities of the polygon layer (buffer). If it is <strong>line</strong> or <strong>point</strong> you can only query the contained entities of another layer at a specified distance from the selected entities.
+  <li><b>Bullet chart</b> also called 'bullet' or 'speedometer' chart, similarly to the text panel it displays a value or indicator, but in a context that facilitates its interpretation, the user must specify a range within which the value is expected to oscillate, plus a threshold value, after which the condition is considered unfavorable or favorable.
+  This panel will allow similar query options as the text panel.</li>.
+  <li><b>Bar Chart</b> can display a bar chart of a numeric field given the categories of a text field of the attribute table. You can also generate the chart from a set of numeric fields present in the attribute table. As for the style you can configure colors and text sizes, you can also assign a color to the bars or use one of the available color palettes.</li>.
+  <li><b>Line chart</b> by means of this chart you can represent a set of data presenting a chronological sequence. It presents similar style configuration options to the bar chart. You can plot only points if you set a line thickness equal to 0, lines of the specified thickness or filled areas.</li><li>
+  </ul>
+<img width="100%" src="https://github.com/luisCartoGeo/QGIS_Dashboard/blob/main/DASHBOARDS.jpg" style="max-width:100%;">
