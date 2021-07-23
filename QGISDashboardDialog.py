@@ -312,19 +312,20 @@ class dashDialog(DialogUi, DialogType):
                 wordBreak=True
             else:
                 wordBreak=False
-            try:
-                tp=seriesPanel(self.canvas,self.capa,[camposn,campox],title=titulo,fill=fill,wordBreak=wordBreak,\
+#            try:
+            tp=seriesPanel(self.capa,[camposn,campox],title=titulo,fill=fill,wordBreak=wordBreak,\
                     widthline=self.widthLine.value(),colorTit=self.colorTitleline.color(),\
                     sizeTitle=self.spTitleSizeLine.value(),colorLabels=self.labelColorLine.color(),\
                     sizeLabels=self.spLabelSizeLine.value(),anchoP=ancho,altoP=alto)
-            except Exception as e:
-                if self.logAcces:
-                    self.log.writeLog(e)
-            try:
-                self.listaPaneles.append(tp)
-            except Exception as e:
-                if self.logAcces:
-                    self.log.writeLog(str(e))
+#            except Exception as e:
+#                if self.logAcces:
+#                    self.log.writeLog(str(e))
+#            try:
+            self.listaPaneles.append(tp)
+#            except Exception as e:
+#                print(str(e))
+#                if self.logAcces:
+#                    self.log.writeLog(str(e))
     
     def procesarBarras(self):
         #CREAMOS EL GRAFICO
@@ -346,8 +347,9 @@ class dashDialog(DialogUi, DialogType):
             if self.modBarras.currentText()=='Values of a field (Attribute)':
                 campox=self.camXBar.currentText()
                 campoy=self.camYBar.currentText()
+                print('value a field',campox,campoy)
                 if len(campox)>0 and len(campoy)>0:
-                    tp=barrasPanel(self.canvas,self.capa,'atributo-sum',titulo,[campox,campoy],\
+                    tp=barrasPanel(self.capa,'atributo-sum',titulo,[campox,campoy],\
                     colorBar=self.colorBar.color(),colorTit=self.colorTitleBar.color(),typeColor=typeColor,\
                     wordBreak=wordBreak,sizeTitle=self.spTitleSizeBar.value(),sizeLabels=self.spLabelSizeBar.value(),\
                     colorLabels=self.colorLabelBar.color(),palette=self.paletteBar.currentText(),\
@@ -355,13 +357,15 @@ class dashDialog(DialogUi, DialogType):
             elif self.modBarras.currentText()=='Multiple fields':
                 items=self.listWidget2.selectedItems()
                 campos=[i.text() for i in items]
+                print('en multiple fields',campos)
                 if len(campos)>1:
-                    tp=barrasPanel(self.canvas,self.capa,'multiple_fields',titulo,[campos],\
+                    tp=barrasPanel(self.capa,'multiple_fields',titulo,[campos],\
                     colorBar=self.colorBar.color(),colorTit=self.colorTitleBar.color(),typeColor=typeColor,\
                     wordBreak=wordBreak,sizeTitle=self.spTitleSizeBar.value(),sizeLabels=self.spLabelSizeBar.value(),\
                     colorLabels=self.colorLabelBar.color(),palette=self.paletteBar.currentText(),\
                     anchoP=ancho,altoP=alto)
         except Exception as e:
+            print(str(e))
             if self.logAcces:
                 self.log.writeLog(str(e))
         try:
@@ -660,6 +664,7 @@ class dashDialog(DialogUi, DialogType):
                 np=int(self.labelNp.text())-1
                 self.labelNp.setText(str(np))
         except Exception as e:
+            print(str(e))
             if self.logAcces:
                 self.log.writeLog(str(e))
             
@@ -671,10 +676,12 @@ class dashDialog(DialogUi, DialogType):
         self.cbModoPanelT.setCurrentIndex(indice)
         self.cam1PanelTexto.setEnabled(False)
         self.cam2PanelTexto.setEnabled(False)
+        self.cam3PanelTexto.setEnabled(False)
         self.cap2PanelTexto.setEnabled(False)
         self.lineE1.setEnabled(False)
         self.operadorPanelT.setEnabled(False)
         self.bufferDistance.setEnabled(False)
+        self.tpUnit.setEnabled(False)
         #EVENTOS
         self.cbModoPanelT.currentTextChanged.connect(self.cambioModo)
 
@@ -1009,6 +1016,7 @@ class dashDialog(DialogUi, DialogType):
             self.cap2PanelTexto.setEnabled(False)
             self.cam3PanelTexto.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(False)
         elif modo=='Percentage':
             self.cam1PanelTexto.setEnabled(True)
             self.cam2PanelTexto.setEnabled(False)
@@ -1017,6 +1025,7 @@ class dashDialog(DialogUi, DialogType):
             self.cap2PanelTexto.setEnabled(False)
             self.cam3PanelTexto.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(False)
         elif modo=='Sum of an attribute':
             self.cam1PanelTexto.setEnabled(True)
             self.cam2PanelTexto.setEnabled(False)
@@ -1025,6 +1034,7 @@ class dashDialog(DialogUi, DialogType):
             self.cap2PanelTexto.setEnabled(False)
             self.cam3PanelTexto.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(False)
         elif modo=='Statistics. Selected entities':
             self.cam1PanelTexto.setEnabled(True)
             self.cam2PanelTexto.setEnabled(False)
@@ -1033,6 +1043,7 @@ class dashDialog(DialogUi, DialogType):
             self.cam3PanelTexto.setEnabled(False)
             self.operadorPanelT.setEnabled(True)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(False)
         elif modo=='Statistics. Selection that coincides with':
             self.cam1PanelTexto.setEnabled(True)
             self.cam2PanelTexto.setEnabled(True)
@@ -1041,6 +1052,7 @@ class dashDialog(DialogUi, DialogType):
             self.cap2PanelTexto.setEnabled(False)
             self.cam3PanelTexto.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(False)
         elif modo=='Entities contained in selection':
             self.cap2PanelTexto.setEnabled(True)
             self.cam3PanelTexto.setEnabled(False)
@@ -1049,6 +1061,7 @@ class dashDialog(DialogUi, DialogType):
             self.lineE1.setEnabled(False)
             self.operadorPanelT.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(False)
         elif modo=='Entities contained. count by attribute that coincides with':
             self.cap2PanelTexto.setEnabled(True)
             self.cam3PanelTexto.setEnabled(True)
@@ -1057,6 +1070,7 @@ class dashDialog(DialogUi, DialogType):
             self.lineE1.setEnabled(True)
             self.operadorPanelT.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(False)
         elif modo=='Entities contained at a distance. Buffer':
             self.cap2PanelTexto.setEnabled(True)
             self.cam3PanelTexto.setEnabled(False)
@@ -1065,6 +1079,7 @@ class dashDialog(DialogUi, DialogType):
             self.lineE1.setEnabled(False)
             self.operadorPanelT.setEnabled(False)
             self.bufferDistance.setEnabled(True)
+            self.tpUnit.setEnabled(True)
         elif modo=='Entities contained at a distance that coincides with':
             self.cap2PanelTexto.setEnabled(True)
             self.cam3PanelTexto.setEnabled(True)
@@ -1073,6 +1088,7 @@ class dashDialog(DialogUi, DialogType):
             self.lineE1.setEnabled(True)
             self.operadorPanelT.setEnabled(False)
             self.bufferDistance.setEnabled(True)
+            self.tpUnit.setEnabled(True)
         elif modo=='Sum of attributes of entities contained at a distance':
             self.cap2PanelTexto.setEnabled(True)
             #update cam3 only numeric field
@@ -1082,6 +1098,7 @@ class dashDialog(DialogUi, DialogType):
             self.lineE1.setEnabled(False)
             self.operadorPanelT.setEnabled(False)
             self.bufferDistance.setEnabled(True)
+            self.tpUnit.setEnabled(True)
         elif modo=='Number of entities in the area. Density':
             self.cap2PanelTexto.setEnabled(True)
             self.cam3PanelTexto.setEnabled(False)
@@ -1090,6 +1107,7 @@ class dashDialog(DialogUi, DialogType):
             self.lineE1.setEnabled(False)
             self.operadorPanelT.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(True)
         elif modo=='Sum of attribute between area. Density':
             self.cap2PanelTexto.setEnabled(True)
             #update cam3 only numeric field
@@ -1099,6 +1117,7 @@ class dashDialog(DialogUi, DialogType):
             self.lineE1.setEnabled(False)
             self.operadorPanelT.setEnabled(False)
             self.bufferDistance.setEnabled(False)
+            self.tpUnit.setEnabled(True)
     
 #Modalidades en Indicador: Valor en tabla de atributos,Densidad 
 #Entidades contenidas en seleccion,Entidades contenidas en seleccion con valor,
