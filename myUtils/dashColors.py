@@ -28,7 +28,13 @@ whiteRed=['rgb(255,255,255)','rgb(255,230,240)','rgb(255,179,209)','rgb(255,179,
               'rgb(255,128,179)','rgb(255,102,163)','rgb(255,77,148)','rgb(255,51,133)','rgb(255,26,117)',
               'rgb(255,0,102)','rgb(230,0,92)','rgb(rgb(204,0,82)','rgb(179,0,71)','rgb(153,0,61)','rgb(128,0,51)',
               'rgb(102,0,41)','rgb(77,0,31)','rgb(51,0,20)','rgb(26,0,10)']
-palettes={'contrast':contrast,'breBlues':breBlues,'whiteRed':whiteRed}
+
+whiteBlue=['rgb(255,255,255)','rgb(204,255,255)','rgb(153,255,255)','rgb(102,255,255)','rgb(26,255,255)',
+           'rgb(153,230,255)','rgb(128,223,255)','rgb(102,217,255)','rgb(51,204,255)','rgb(0,191,255)',
+           'rgb(51,153,255)','rgb(0,153,255)','rgb(51,102,255)','rgb(51,133,255)','rgb(26,117,255)',
+           'rgb(51,51,255)','rgb(26,26,255)','rgb(0,0,255)','rgb(0,92,230)','rgb(0,57,230)','rgb(0,45,179)',
+           'rgb(0,38,153)','rgb(0,32,128)']
+palettes={'contrast':contrast,'breBlues':breBlues,'whiteRed':whiteRed,'whiteBlue':whiteBlue}
 
 class dashColors:
     def __init__(self):
@@ -45,29 +51,41 @@ class dashColors:
         else:
             palet=palettes['contrast']
         ncolors=len(palet)
-        if nclasses<ncolors:
+        if nclasses<=ncolors:
             div=ncolors//nclasses
             listc=[palet[i] for i in range(0,ncolors,div)]
             return "['"+"','".join(listc)+"']"
         else:
             nmissing=nclasses-ncolors
-            if palet==self.breBlues:
+            if palet==breBlues or palet==whiteBlue:
                 red=np.random.randint(0,255,nmissing)
                 green=np.random.randint(0,255,nmissing)
                 l1=",255)','rgb(".join(str(i[0])+','+str(i[1]) for i in zip(red,green))
-                olist="','".join(breBlues)
-                return "['"+olist+",rgb('"+l1+",255)'"+"]"
-            else:
+                if palet==breBlues:
+                    olist="','".join(breBlues)+"'"
+                else:
+                    olist="','".join(whiteBlue)+"'"
+                return "['"+olist+",'rgb("+l1+",255)'"+"]"
+            elif palet==contrast:
                 red=np.random.randint(0,255,nmissing)
                 green=np.random.randint(0,255,nmissing)
                 blue=np.random.randint(0,255,nmissing)
                 lista=[]
-                for i in red:
-                    for z in zip(green,blue):
-                        t="'rgb("+str(i)+','
-                        t2=','.join(str(e) for e in z)+")'"
-                        lista.append(t+t2)
-                olist="','".join(contrast)
+                for e,z in enumerate(zip(green,blue)):
+                    t="'rgb("+str(red[e])+','
+                    t2=','.join(str(e) for e in z)+")'"
+                    lista.append(t+t2)
+                olist="','".join(contrast)+"',"
+                return "['"+olist+','.join(lista)+']'
+            elif palet==whiteRed:
+                green=np.random.randint(0,255,nmissing)
+                blue=np.random.randint(0,255,nmissing)
+                lista=[]
+                for z in zip(green,blue):
+                    t="'rgb(255,"
+                    t2=','.join(str(e) for e in z)+")'"
+                    lista.append(t+t2)
+                olist="','".join(whiteRed)+"',"
                 return "['"+olist+','.join(lista)+']'
         
 
