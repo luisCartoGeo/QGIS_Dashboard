@@ -6,772 +6,510 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>556</height>
+    <width>607</width>
+    <height>575</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>514</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-   <property name="centerButtons">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QStackedWidget" name="paginador">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>561</width>
-     <height>461</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Box</enum>
-   </property>
-   <property name="currentIndex">
-    <number>1</number>
-   </property>
-   <widget class="QWidget" name="page">
-    <widget class="QGroupBox" name="posiciones">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>40</y>
-       <width>291</width>
-       <height>281</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="title">
-      <string>Select the dashboard position</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="siguiente">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>400</y>
-       <width>151</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>ArrowCursor</cursorShape>
-     </property>
-     <property name="text">
-      <string>Next....</string>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_33">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>10</y>
-       <width>371</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>9</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Dashboard Configuration</string>
-     </property>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>11</x>
-       <y>64</y>
-       <width>209</width>
-       <height>241</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="0">
-       <widget class="QLabel" name="l1">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Number of panels</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QComboBox" name="cbnPaneles">
-        <property name="currentText">
-         <string>1</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>3</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>4</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>5</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>6</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>88</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="2" column="0">
-       <spacer name="verticalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>18</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_47">
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Panel size</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QComboBox" name="cbSizePanel"/>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_31">
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Tool tip</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QCheckBox" name="checkBoxToolTip">
-        <property name="text">
-         <string>Insert Tool Tip</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0" colspan="2">
-       <widget class="QLabel" name="label_32">
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Borde del marco del panel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0" colspan="2">
-       <widget class="QCheckBox" name="checkBoxMarco">
-        <property name="text">
-         <string>Draw edge of panel frame</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="page_2">
-    <widget class="QTabWidget" name="Tabwidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>541</width>
-       <height>401</height>
-      </rect>
-     </property>
-     <property name="tabPosition">
-      <enum>QTabWidget::North</enum>
-     </property>
-     <property name="tabShape">
-      <enum>QTabWidget::Triangular</enum>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="l0">
+       <property name="text">
+        <string>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="labelNp">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="WindowText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Light">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>206</red>
+             <green>206</green>
+             <blue>206</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Midlight">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>231</red>
+             <green>228</green>
+             <blue>224</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Dark">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>104</red>
+             <green>101</green>
+             <blue>97</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Mid">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>139</red>
+             <green>135</green>
+             <blue>129</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Text">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="BrightText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>202</red>
+             <green>202</green>
+             <blue>202</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ButtonText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>227</red>
+             <green>227</green>
+             <blue>227</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Shadow">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="HighlightedText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>202</red>
+             <green>202</green>
+             <blue>202</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="AlternateBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>231</red>
+             <green>228</green>
+             <blue>224</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ToolTipBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>220</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ToolTipText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="WindowText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Light">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>206</red>
+             <green>206</green>
+             <blue>206</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Midlight">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>231</red>
+             <green>228</green>
+             <blue>224</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Dark">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>104</red>
+             <green>101</green>
+             <blue>97</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Mid">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>139</red>
+             <green>135</green>
+             <blue>129</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Text">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="BrightText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>202</red>
+             <green>202</green>
+             <blue>202</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ButtonText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>227</red>
+             <green>227</green>
+             <blue>227</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Shadow">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="HighlightedText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>202</red>
+             <green>202</green>
+             <blue>202</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="AlternateBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>231</red>
+             <green>228</green>
+             <blue>224</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ToolTipBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>220</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ToolTipText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="WindowText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>104</red>
+             <green>101</green>
+             <blue>97</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Light">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>206</red>
+             <green>206</green>
+             <blue>206</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Midlight">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>231</red>
+             <green>228</green>
+             <blue>224</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Dark">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>104</red>
+             <green>101</green>
+             <blue>97</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Mid">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>139</red>
+             <green>135</green>
+             <blue>129</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Text">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>104</red>
+             <green>101</green>
+             <blue>97</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="BrightText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>202</red>
+             <green>202</green>
+             <blue>202</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ButtonText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>104</red>
+             <green>101</green>
+             <blue>97</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Shadow">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="HighlightedText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>202</red>
+             <green>202</green>
+             <blue>202</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="AlternateBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>208</red>
+             <green>202</green>
+             <blue>194</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ToolTipBase">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>220</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="ToolTipText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial Black</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>1</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QStackedWidget" name="paginador">
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
      </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="panelT">
-      <attribute name="title">
-       <string>Text Panel</string>
-      </attribute>
-      <widget class="QToolBox" name="tptoolBox">
+     <widget class="QWidget" name="page">
+      <widget class="QGroupBox" name="posiciones">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>10</y>
-         <width>531</width>
-         <height>331</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="page_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>529</width>
-          <height>267</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CALCULATION MODE</string>
-        </attribute>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>9</x>
-           <y>0</y>
-           <width>511</width>
-           <height>261</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" colspan="5">
-           <widget class="QComboBox" name="cbModoPanelT">
-            <item>
-             <property name="text">
-              <string>Total selected entities</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Sum of an attribute</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Percentage</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Statistics. Selected entities</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Statistics. Selection that coincides with</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Entities contained in selection</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Entities contained in selection. Sum attribute</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Entities contained at a distance. Buffer</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Entities contained at a distance that coincides with</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Sum of attributes of entities contained at a distance</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Number of entities in the area. Density</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Sum of attribute between area. Density</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="3">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Field1 (main layer)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="QComboBox" name="cam1PanelTexto"/>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Buffer distance</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QDoubleSpinBox" name="bufferDistance">
-            <property name="decimals">
-             <number>7</number>
-            </property>
-            <property name="minimum">
-             <double>-1.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>10000000037.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Field2 (main layer)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="3">
-           <widget class="QComboBox" name="cam2PanelTexto"/>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Statistic</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3">
-           <widget class="QComboBox" name="operadorPanelT">
-            <item>
-             <property name="text">
-              <string>min</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>max</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>mean</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>median</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>range</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Value</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" colspan="3">
-           <widget class="QLineEdit" name="lineE1"/>
-          </item>
-          <item row="6" column="0" colspan="4">
-           <widget class="QLabel" name="label_45">
-            <property name="text">
-             <string>--------Spatial Query-----------</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_34">
-            <property name="text">
-             <string>Layer 2</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="2" colspan="2">
-           <widget class="QComboBox" name="cap2PanelTexto"/>
-          </item>
-          <item row="8" column="0" colspan="2">
-           <widget class="QLabel" name="label_44">
-            <property name="text">
-             <string>Field (layer 2)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="2" colspan="2">
-           <widget class="QComboBox" name="cam3PanelTexto"/>
-          </item>
-          <item row="8" column="4" colspan="2">
-           <spacer name="horizontalSpacer_8">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>48</width>
-              <height>28</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="8" column="6">
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>248</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="4" rowspan="6" colspan="3">
-           <widget class="QLabel" name="lpanel">
-            <property name="text">
-             <string>imagen</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="4">
-           <widget class="QLabel" name="label_48">
-            <property name="text">
-             <string>Unit</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="5">
-           <widget class="QComboBox" name="tpUnit">
-            <item>
-             <property name="text">
-              <string>m2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>hectarea</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>km2</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="page_4">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CONFIGURE STYLE</string>
-        </attribute>
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="geometry">
-          <rect>
-           <x>226</x>
-           <y>0</y>
-           <width>301</width>
-           <height>251</height>
-          </rect>
-         </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>299</width>
-            <height>249</height>
-           </rect>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>2</x>
-           <y>0</y>
-           <width>220</width>
-           <height>243</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="1" colspan="3">
-           <widget class="QComboBox" name="cbTextPestilo"/>
-          </item>
-          <item row="1" column="0" colspan="4">
-           <widget class="QLabel" name="label_2">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>------------Title--------------</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_30">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Style</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="3">
-           <widget class="QgsColorButton" name="ctitPanelText"/>
-          </item>
-          <item row="10" column="3">
-           <widget class="QComboBox" name="color_icono">
-            <item>
-             <property name="text">
-              <string>Normal</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Invertido</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="10" column="0" colspan="3">
-           <widget class="QComboBox" name="ubiIcono">
-            <item>
-             <property name="text">
-              <string>Center</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Left</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Right</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="3">
-           <widget class="QgsColorButton" name="cTextTitPT"/>
-          </item>
-          <item row="4" column="0" colspan="4">
-           <widget class="QLabel" name="label_27">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>------------Value-----------------</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="3">
-           <widget class="QLabel" name="label_14">
-            <property name="text">
-             <string>Color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="3">
-           <widget class="QgsColorButton" name="cconPanelText"/>
-          </item>
-          <item row="9" column="0" colspan="2">
-           <widget class="QLabel" name="label_29">
-            <property name="text">
-             <string>Position</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="3">
-           <widget class="QLabel" name="label_28">
-            <property name="text">
-             <string>Texto</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>Text</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="3">
-           <widget class="QgsColorButton" name="cTextConPT"/>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Background</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Background</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QCheckBox" name="checkBoxIcono">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Icono</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="2">
-           <widget class="QSpinBox" name="roundFrame"/>
-          </item>
-          <item row="7" column="3">
-           <widget class="QLabel" name="label_10">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Rounding</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QPushButton" name="procPanelT">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>345</y>
-         <width>93</width>
-         <height>28</height>
+         <x>260</x>
+         <y>40</y>
+         <width>291</width>
+         <height>281</height>
         </rect>
        </property>
        <property name="font">
@@ -780,1631 +518,1878 @@
          <bold>true</bold>
         </font>
        </property>
-       <property name="text">
-        <string>PROCESS</string>
+       <property name="title">
+        <string>Select the dashboard position</string>
        </property>
       </widget>
-     </widget>
-     <widget class="QWidget" name="Indicador">
-      <attribute name="title">
-       <string>Indicator</string>
-      </attribute>
-      <widget class="QToolBox" name="indToolBox">
+      <widget class="QPushButton" name="siguiente">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>6</y>
-         <width>531</width>
-         <height>331</height>
+         <x>10</x>
+         <y>400</y>
+         <width>151</width>
+         <height>28</height>
         </rect>
        </property>
-       <property name="currentIndex">
-        <number>0</number>
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
        </property>
-       <widget class="QWidget" name="page_9">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>531</width>
-          <height>269</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CALCULATION MODE</string>
-        </attribute>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>0</y>
-           <width>334</width>
-           <height>47</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="1">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Maximum</string>
-            </property>
-           </widget>
+       <property name="text">
+        <string>Next....</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_33">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>10</y>
+         <width>371</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Dashboard Configuration</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>64</y>
+         <width>209</width>
+         <height>241</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QLabel" name="l1">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Number of panels</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QComboBox" name="cbnPaneles">
+          <property name="currentText">
+           <string>1</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
           </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>Minimum</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>2</string>
+           </property>
           </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="label_13">
-            <property name="text">
-             <string>threshold</string>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>3</string>
+           </property>
           </item>
-          <item row="1" column="0">
-           <spacer name="horizontalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>13</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
+          <item>
+           <property name="text">
+            <string>4</string>
+           </property>
           </item>
-          <item row="1" column="1">
-           <widget class="QDoubleSpinBox" name="indMax">
-            <property name="minimum">
-             <double>-100000.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>100000000.000000000000000</double>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>5</string>
+           </property>
           </item>
-          <item row="1" column="2">
-           <widget class="QDoubleSpinBox" name="indMin">
-            <property name="minimum">
-             <double>-1000000.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>1000000.000000000000000</double>
-            </property>
-           </widget>
+          <item>
+           <property name="text">
+            <string>6</string>
+           </property>
           </item>
-          <item row="1" column="3">
-           <widget class="QDoubleSpinBox" name="indUmbral_2">
-            <property name="minimum">
-             <double>-100000.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>1000000.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QDoubleSpinBox" name="indBufferDistance">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>110</y>
-           <width>111</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="decimals">
-          <number>7</number>
-         </property>
-         <property name="minimum">
-          <double>-1.000000000000000</double>
-         </property>
-         <property name="maximum">
-          <double>10000000037.000000000000000</double>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_54">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>110</y>
-           <width>108</width>
-           <height>22</height>
-          </rect>
-         </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>88</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0">
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>18</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_47">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Panel size</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QComboBox" name="cbSizePanel"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_31">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Tool tip</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QCheckBox" name="checkBoxToolTip">
+          <property name="text">
+           <string>Insert Tool Tip</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QLabel" name="label_32">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Borde del marco del panel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBoxMarco">
+          <property name="text">
+           <string>Draw edge of panel frame</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
          <property name="text">
-          <string>Buffer distance</string>
+          <string>Title of panel</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="cbModoInd">
-         <property name="geometry">
-          <rect>
-           <x>11</x>
-           <y>55</y>
-           <width>280</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <item>
-          <property name="text">
-           <string>Valor en tabla de atributos</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Entidades contenidas en seleccion</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Entidades contenidas en seleccion con valor</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Densidad</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Densidad por valor</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QLabel" name="label_18">
-         <property name="geometry">
-          <rect>
-           <x>11</x>
-           <y>85</y>
-           <width>101</width>
-           <height>16</height>
-          </rect>
-         </property>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="l2">
          <property name="text">
-          <string>Field (main layer)</string>
+          <string>Main layer</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="cam1Ind">
-         <property name="geometry">
-          <rect>
-           <x>130</x>
-           <y>80</y>
-           <width>73</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_22">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>170</y>
-           <width>39</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Unit</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="unidadInd">
-         <property name="geometry">
-          <rect>
-           <x>90</x>
-           <y>166</y>
-           <width>86</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <item>
-          <property name="text">
-           <string>m2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>hectarea</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>km2</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QLabel" name="label_21">
-         <property name="geometry">
-          <rect>
-           <x>11</x>
-           <y>142</y>
-           <width>32</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Value</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="valorInd">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>140</y>
-           <width>137</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_49">
-         <property name="geometry">
-          <rect>
-           <x>11</x>
-           <y>190</y>
-           <width>172</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>--------Spatial Query-----------</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_19">
-         <property name="geometry">
-          <rect>
-           <x>11</x>
-           <y>218</y>
-           <width>51</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Layer 2</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="capa2ind">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>218</y>
-           <width>73</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_20">
-         <property name="geometry">
-          <rect>
-           <x>11</x>
-           <y>245</y>
-           <width>41</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Field 2</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="cam2Ind">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>245</y>
-           <width>73</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="page_10">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>531</width>
-          <height>269</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CONFIGURE STYLE</string>
-        </attribute>
-        <widget class="QLabel" name="lindicador">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>40</y>
-           <width>250</width>
-           <height>200</height>
-          </rect>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
+       </item>
+       <item row="0" column="3">
+        <widget class="QComboBox" name="lc">
          <property name="minimumSize">
           <size>
            <width>200</width>
-           <height>150</height>
+           <height>0</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>250</width>
-           <height>200</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>images/indicador.png</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
         </widget>
-        <widget class="QgsColorButton" name="indMarkColor">
-         <property name="geometry">
-          <rect>
-           <x>239</x>
-           <y>220</y>
-           <width>91</width>
-           <height>27</height>
-          </rect>
+       </item>
+       <item row="1" column="0" colspan="4">
+        <widget class="QTabWidget" name="Tabwidget">
+         <property name="tabPosition">
+          <enum>QTabWidget::North</enum>
          </property>
-        </widget>
-        <widget class="QgsColorButton" name="indFinalColor">
-         <property name="geometry">
-          <rect>
-           <x>434</x>
-           <y>170</y>
-           <width>91</width>
-           <height>27</height>
-          </rect>
+         <property name="tabShape">
+          <enum>QTabWidget::Triangular</enum>
          </property>
-        </widget>
-        <widget class="QgsColorButton" name="indLineColor">
-         <property name="geometry">
-          <rect>
-           <x>435</x>
-           <y>140</y>
-           <width>91</width>
-           <height>27</height>
-          </rect>
+         <property name="currentIndex">
+          <number>0</number>
          </property>
-        </widget>
-        <widget class="QgsColorButton" name="indBaseColor">
-         <property name="geometry">
-          <rect>
-           <x>330</x>
-           <y>20</y>
-           <width>81</width>
-           <height>27</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QgsColorButton" name="indTitleColor">
-         <property name="geometry">
-          <rect>
-           <x>230</x>
-           <y>10</y>
-           <width>71</width>
-           <height>27</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QgsColorButton" name="indBarColor">
-         <property name="geometry">
-          <rect>
-           <x>140</x>
-           <y>110</y>
-           <width>71</width>
-           <height>27</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>125</width>
-           <height>251</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QLabel" name="label_50">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Style</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="cbIndEstilo"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_15">
-            <property name="text">
-             <string>Title Size</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="indTitleSize">
-            <property name="maximum">
-             <number>40</number>
-            </property>
-            <property name="value">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_53">
-            <property name="text">
-             <string>Labels size</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="indLabelSize">
-            <property name="maximum">
-             <number>40</number>
-            </property>
-            <property name="value">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_51">
-            <property name="text">
-             <string>Background</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QgsColorButton" name="indBackColor"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_52">
-            <property name="text">
-             <string>Threshold</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="cbIndThreshold">
-            <item>
-             <property name="text">
-              <string>Value difference</string>
+         <widget class="QWidget" name="panelT">
+          <attribute name="title">
+           <string>Text Panel</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QToolBox" name="tptoolBox">
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Percentage</string>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
              </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QgsColorButton" name="indColorValue">
-         <property name="geometry">
-          <rect>
-           <x>370</x>
-           <y>210</y>
-           <width>81</width>
-           <height>27</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QPushButton" name="procIndicador">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>342</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>PROCESS</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="Barras">
-      <attribute name="title">
-       <string>Bar</string>
-      </attribute>
-      <widget class="QToolBox" name="barToolBox">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>10</y>
-         <width>531</width>
-         <height>331</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Box</enum>
-       </property>
-       <property name="currentIndex">
-        <number>1</number>
-       </property>
-       <widget class="QWidget" name="page_5">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CALCULATION MODE</string>
-        </attribute>
-        <widget class="QLabel" name="label_36">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>100</y>
-           <width>45</width>
-           <height>18</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>9</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Fields</string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>0</y>
-           <width>521</width>
-           <height>261</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0" colspan="3">
-           <widget class="QComboBox" name="modBarras">
-            <item>
-             <property name="text">
-              <string>Valores de un campo &lt; 10 clases</string>
+             <property name="currentIndex">
+              <number>0</number>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Varios campos</string>
+             <widget class="QWidget" name="page_3">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>510</width>
+                <height>278</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>CALCULATION MODE</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_11">
+               <item row="0" column="0">
+                <layout class="QGridLayout" name="gridLayout_4">
+                 <item row="0" column="0" colspan="5">
+                  <widget class="QComboBox" name="cbModoPanelT">
+                   <item>
+                    <property name="text">
+                     <string>Total selected entities</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Sum of an attribute</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Percentage</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Statistics. Selected entities</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Statistics. Selection that coincides with</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Entities contained in selection</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Entities contained in selection. Sum attribute</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Entities contained at a distance. Buffer</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Entities contained at a distance that coincides with</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Sum of attributes of entities contained at a distance</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Number of entities in the area. Density</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Sum of attribute between area. Density</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="1" column="0" colspan="3">
+                  <widget class="QLabel" name="label_4">
+                   <property name="text">
+                    <string>Field1 (main layer)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QComboBox" name="cam1PanelTexto"/>
+                 </item>
+                 <item row="2" column="0" colspan="2">
+                  <widget class="QLabel" name="label_9">
+                   <property name="text">
+                    <string>Buffer distance</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="3">
+                  <widget class="QDoubleSpinBox" name="bufferDistance">
+                   <property name="decimals">
+                    <number>7</number>
+                   </property>
+                   <property name="minimum">
+                    <double>-1.000000000000000</double>
+                   </property>
+                   <property name="maximum">
+                    <double>10000000037.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0" colspan="2">
+                  <widget class="QLabel" name="label_7">
+                   <property name="text">
+                    <string>Field2 (main layer)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="3">
+                  <widget class="QComboBox" name="cam2PanelTexto"/>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_5">
+                   <property name="text">
+                    <string>Statistic</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="3">
+                  <widget class="QComboBox" name="operadorPanelT">
+                   <item>
+                    <property name="text">
+                     <string>min</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>max</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>mean</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>median</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>range</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabel" name="label_6">
+                   <property name="text">
+                    <string>Value</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1" colspan="3">
+                  <widget class="QLineEdit" name="lineE1"/>
+                 </item>
+                 <item row="6" column="0" colspan="4">
+                  <widget class="QLabel" name="label_45">
+                   <property name="text">
+                    <string>--------Spatial Query-----------</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0">
+                  <widget class="QLabel" name="label_34">
+                   <property name="text">
+                    <string>Layer 2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="2" colspan="2">
+                  <widget class="QComboBox" name="cap2PanelTexto"/>
+                 </item>
+                 <item row="8" column="0" colspan="2">
+                  <widget class="QLabel" name="label_44">
+                   <property name="text">
+                    <string>Field (layer 2)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="8" column="2" colspan="2">
+                  <widget class="QComboBox" name="cam3PanelTexto"/>
+                 </item>
+                 <item row="8" column="4" colspan="2">
+                  <spacer name="horizontalSpacer_8">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>48</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="8" column="6">
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>248</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="1" column="4" rowspan="6" colspan="3">
+                  <widget class="QLabel" name="lpanel">
+                   <property name="text">
+                    <string>imagen</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="4">
+                  <widget class="QLabel" name="label_48">
+                   <property name="text">
+                    <string>Unit</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="5">
+                  <widget class="QComboBox" name="tpUnit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>m2</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>hectarea</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>km2</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="page_4">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>531</width>
+                <height>276</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>CONFIGURE STYLE</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_12">
+               <item row="0" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <item>
+                  <layout class="QGridLayout" name="gridLayout">
+                   <item row="0" column="1" colspan="3">
+                    <widget class="QComboBox" name="cbTextPestilo"/>
+                   </item>
+                   <item row="1" column="0" colspan="4">
+                    <widget class="QLabel" name="label_2">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>------------Title--------------</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_30">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Style</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0" colspan="3">
+                    <widget class="QgsColorButton" name="ctitPanelText"/>
+                   </item>
+                   <item row="10" column="3">
+                    <widget class="QComboBox" name="color_icono">
+                     <item>
+                      <property name="text">
+                       <string>Normal</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Invertido</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item row="10" column="0" colspan="3">
+                    <widget class="QComboBox" name="ubiIcono">
+                     <item>
+                      <property name="text">
+                       <string>Center</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Left</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Right</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item row="3" column="3">
+                    <widget class="QgsColorButton" name="cTextTitPT"/>
+                   </item>
+                   <item row="4" column="0" colspan="4">
+                    <widget class="QLabel" name="label_27">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>------------Value-----------------</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="3">
+                    <widget class="QLabel" name="label_14">
+                     <property name="text">
+                      <string>Color</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="0" colspan="3">
+                    <widget class="QgsColorButton" name="cconPanelText"/>
+                   </item>
+                   <item row="9" column="0" colspan="2">
+                    <widget class="QLabel" name="label_29">
+                     <property name="text">
+                      <string>Position</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="3">
+                    <widget class="QLabel" name="label_28">
+                     <property name="text">
+                      <string>Texto</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="3">
+                    <widget class="QLabel" name="label_16">
+                     <property name="text">
+                      <string>Text</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="3">
+                    <widget class="QgsColorButton" name="cTextConPT"/>
+                   </item>
+                   <item row="2" column="0" colspan="2">
+                    <widget class="QLabel" name="label_8">
+                     <property name="text">
+                      <string>Background</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="0" colspan="2">
+                    <widget class="QLabel" name="label_3">
+                     <property name="text">
+                      <string>Background</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="0">
+                    <widget class="QCheckBox" name="checkBoxIcono">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Icono</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="2">
+                    <widget class="QSpinBox" name="roundFrame"/>
+                   </item>
+                   <item row="7" column="3">
+                    <widget class="QLabel" name="label_10">
+                     <property name="font">
+                      <font>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Rounding</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QScrollArea" name="scrollArea">
+                   <property name="widgetResizable">
+                    <bool>true</bool>
+                   </property>
+                   <widget class="QWidget" name="scrollAreaWidgetContents">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>249</width>
+                      <height>250</height>
+                     </rect>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QPushButton" name="procPanelT">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>PROCESS</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>398</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Indicador">
+          <attribute name="title">
+           <string>Indicator</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_17">
+           <item row="0" column="0">
+            <widget class="QToolBox" name="indToolBox">
+             <property name="currentIndex">
+              <number>0</number>
              </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="3" colspan="2">
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::MinimumExpanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>65</width>
-              <height>28</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="5">
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::MinimumExpanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>158</width>
-              <height>28</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="0" rowspan="2">
-           <widget class="QLabel" name="label_25">
-            <property name="text">
-             <string>Categorical field</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" rowspan="3">
-           <widget class="QComboBox" name="camXBar"/>
-          </item>
-          <item row="3" column="0" rowspan="2">
-           <widget class="QLabel" name="label_26">
-            <property name="text">
-             <string>Numerical field</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="camYBar"/>
-          </item>
-          <item row="5" column="1">
-           <widget class="QListWidget" name="listWidget2">
-            <property name="font">
-             <font>
-              <pointsize>8</pointsize>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3" rowspan="4" colspan="3">
-           <widget class="QLabel" name="lbar">
-            <property name="text">
-             <string>IMAGEN</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+             <widget class="QWidget" name="page_9">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>512</width>
+                <height>305</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>CALCULATION MODE</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_16">
+               <item row="0" column="0">
+                <layout class="QGridLayout" name="gridLayout_15">
+                 <item row="0" column="0" colspan="3">
+                  <layout class="QVBoxLayout" name="verticalLayout_3">
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_6">
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_11">
+                       <property name="text">
+                        <string>Maximum</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLabel" name="label_12">
+                       <property name="text">
+                        <string>Minimum</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QLabel" name="label_13">
+                       <property name="text">
+                        <string>threshold</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <spacer name="horizontalSpacer_5">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>13</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QDoubleSpinBox" name="indMax">
+                       <property name="minimum">
+                        <double>-100000.000000000000000</double>
+                       </property>
+                       <property name="maximum">
+                        <double>100000000.000000000000000</double>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QDoubleSpinBox" name="indMin">
+                       <property name="minimum">
+                        <double>-1000000.000000000000000</double>
+                       </property>
+                       <property name="maximum">
+                        <double>1000000.000000000000000</double>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="3">
+                      <widget class="QDoubleSpinBox" name="indUmbral_2">
+                       <property name="minimum">
+                        <double>-100000.000000000000000</double>
+                       </property>
+                       <property name="maximum">
+                        <double>1000000.000000000000000</double>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="cbModoInd">
+                     <item>
+                      <property name="text">
+                       <string>Valor en tabla de atributos</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Entidades contenidas en seleccion</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Entidades contenidas en seleccion con valor</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Densidad</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Densidad por valor</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="0" column="3">
+                  <spacer name="horizontalSpacer_10">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>148</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="1" column="0" rowspan="2" colspan="2">
+                  <layout class="QGridLayout" name="gridLayout_14">
+                   <item row="0" column="0" colspan="3">
+                    <widget class="QLabel" name="label_18">
+                     <property name="text">
+                      <string>Field (main layer)</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="3">
+                    <widget class="QComboBox" name="cam1Ind">
+                     <property name="minimumSize">
+                      <size>
+                       <width>100</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0" colspan="2">
+                    <widget class="QLabel" name="label_54">
+                     <property name="text">
+                      <string>Buffer distance</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2" colspan="2">
+                    <widget class="QDoubleSpinBox" name="indBufferDistance">
+                     <property name="decimals">
+                      <number>7</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-1.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>10000000037.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_21">
+                     <property name="text">
+                      <string>Value</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1" colspan="3">
+                    <widget class="QLineEdit" name="valorInd"/>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="label_22">
+                     <property name="text">
+                      <string>Unit</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1" colspan="3">
+                    <widget class="QComboBox" name="unidadInd">
+                     <property name="minimumSize">
+                      <size>
+                       <width>100</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>m2</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>hectarea</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>km2</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="1" column="2" colspan="2">
+                  <spacer name="horizontalSpacer_11">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>218</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="2" column="2" colspan="2">
+                  <spacer name="horizontalSpacer_13">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>218</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="3" column="0">
+                  <layout class="QVBoxLayout" name="verticalLayout_2">
+                   <item>
+                    <widget class="QLabel" name="label_49">
+                     <property name="text">
+                      <string>--------Spatial Query-----------</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_13">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_19">
+                       <property name="text">
+                        <string>Layer 2</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QComboBox" name="capa2ind">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_20">
+                       <property name="text">
+                        <string>Field 2</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QComboBox" name="cam2Ind">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="3" column="1" colspan="3">
+                  <spacer name="horizontalSpacer_12">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>298</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="page_10">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>98</width>
+                <height>28</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>CONFIGURE STYLE</string>
+              </attribute>
+              <widget class="QLabel" name="lindicador">
+               <property name="geometry">
+                <rect>
+                 <x>190</x>
+                 <y>40</y>
+                 <width>250</width>
+                 <height>200</height>
+                </rect>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>200</width>
+                 <height>150</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>250</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>images/indicador.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QgsColorButton" name="indMarkColor">
+               <property name="geometry">
+                <rect>
+                 <x>239</x>
+                 <y>220</y>
+                 <width>91</width>
+                 <height>27</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QgsColorButton" name="indFinalColor">
+               <property name="geometry">
+                <rect>
+                 <x>409</x>
+                 <y>170</y>
+                 <width>91</width>
+                 <height>27</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QgsColorButton" name="indLineColor">
+               <property name="geometry">
+                <rect>
+                 <x>410</x>
+                 <y>140</y>
+                 <width>91</width>
+                 <height>27</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QgsColorButton" name="indBaseColor">
+               <property name="geometry">
+                <rect>
+                 <x>330</x>
+                 <y>20</y>
+                 <width>81</width>
+                 <height>27</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QgsColorButton" name="indTitleColor">
+               <property name="geometry">
+                <rect>
+                 <x>230</x>
+                 <y>10</y>
+                 <width>71</width>
+                 <height>27</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QgsColorButton" name="indBarColor">
+               <property name="geometry">
+                <rect>
+                 <x>140</x>
+                 <y>110</y>
+                 <width>71</width>
+                 <height>27</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QWidget" name="layoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>10</y>
+                 <width>125</width>
+                 <height>251</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QLabel" name="label_50">
+                  <property name="font">
+                   <font>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Style</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="cbIndEstilo"/>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="text">
+                   <string>Title Size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="indTitleSize">
+                  <property name="maximum">
+                   <number>40</number>
+                  </property>
+                  <property name="value">
+                   <number>10</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_53">
+                  <property name="text">
+                   <string>Labels size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="indLabelSize">
+                  <property name="maximum">
+                   <number>40</number>
+                  </property>
+                  <property name="value">
+                   <number>10</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_51">
+                  <property name="text">
+                   <string>Background</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QgsColorButton" name="indBackColor"/>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_52">
+                  <property name="text">
+                   <string>Threshold</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="cbIndThreshold">
+                  <item>
+                   <property name="text">
+                    <string>Value difference</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Percentage</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QgsColorButton" name="indColorValue">
+               <property name="geometry">
+                <rect>
+                 <x>370</x>
+                 <y>210</y>
+                 <width>81</width>
+                 <height>27</height>
+                </rect>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QPushButton" name="procIndicador">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>PROCESS</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>388</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Barras">
+          <attribute name="title">
+           <string>Bar</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_18">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QToolBox" name="barToolBox">
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <widget class="QWidget" name="page_5">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>529</width>
+                  <height>274</height>
+                 </rect>
+                </property>
+                <attribute name="label">
+                 <string>CALCULATION MODE</string>
+                </attribute>
+                <layout class="QGridLayout" name="gridLayout_19">
+                 <item row="0" column="0">
+                  <layout class="QGridLayout" name="gridLayout_3">
+                   <item row="0" column="0" colspan="3">
+                    <widget class="QComboBox" name="modBarras">
+                     <item>
+                      <property name="text">
+                       <string>Valores de un campo &lt; 10 clases</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Varios campos</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item row="0" column="3" colspan="2">
+                    <spacer name="horizontalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::MinimumExpanding</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>65</width>
+                       <height>28</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="5">
+                    <spacer name="horizontalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::MinimumExpanding</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>158</width>
+                       <height>28</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="1" column="0" rowspan="2">
+                    <widget class="QLabel" name="label_25">
+                     <property name="text">
+                      <string>Categorical field</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1" rowspan="3">
+                    <widget class="QComboBox" name="camXBar"/>
+                   </item>
+                   <item row="3" column="0" rowspan="2">
+                    <widget class="QLabel" name="label_26">
+                     <property name="text">
+                      <string>Numerical field</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QComboBox" name="camYBar"/>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QListWidget" name="listWidget2">
+                     <property name="font">
+                      <font>
+                       <pointsize>8</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="3" rowspan="4" colspan="3">
+                    <widget class="QLabel" name="lbar">
+                     <property name="text">
+                      <string>IMAGEN</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_36">
+                   <property name="font">
+                    <font>
+                     <pointsize>9</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Fields</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="page_6">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>351</width>
+                  <height>152</height>
+                 </rect>
+                </property>
+                <attribute name="label">
+                 <string>CONFIGURE STYLE</string>
+                </attribute>
+                <layout class="QGridLayout" name="gridLayout_20">
+                 <item row="0" column="0">
+                  <layout class="QGridLayout" name="gridLayout_7">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_35">
+                     <property name="text">
+                      <string>Title Color</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QgsColorButton" name="colorTitleBar"/>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QRadioButton" name="optColor">
+                     <property name="text">
+                      <string>Bar color</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="3">
+                    <widget class="QgsColorButton" name="colorBar"/>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_39">
+                     <property name="text">
+                      <string>Title Size</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QSpinBox" name="spTitleSizeBar">
+                     <property name="maximum">
+                      <number>40</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_37">
+                     <property name="text">
+                      <string>Labels Color</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QgsColorButton" name="colorLabelBar"/>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="label_38">
+                     <property name="text">
+                      <string>Labels Size</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QSpinBox" name="spLabelSizeBar">
+                     <property name="maximum">
+                      <number>30</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0" colspan="2">
+                    <widget class="QCheckBox" name="splitTextBar">
+                     <property name="text">
+                      <string>Split long text labels</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2">
+                    <widget class="QRadioButton" name="opPalette">
+                     <property name="text">
+                      <string>Palette color</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="3">
+                    <widget class="QComboBox" name="paletteBar"/>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QPushButton" name="procBarras">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>PROCESS</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_14">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>378</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>Line</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_21">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QToolBox" name="lineToolBox">
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <widget class="QWidget" name="page_7">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>529</width>
+                  <height>274</height>
+                 </rect>
+                </property>
+                <attribute name="label">
+                 <string>CALCULATION MODE</string>
+                </attribute>
+                <widget class="QLabel" name="label_17">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>341</width>
+                   <height>16</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Seleccione los campos con los valores</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_23">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>30</y>
+                   <width>161</width>
+                   <height>16</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>8</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Campos con los valores</string>
+                 </property>
+                </widget>
+                <widget class="QListWidget" name="listWidget">
+                 <property name="geometry">
+                  <rect>
+                   <x>130</x>
+                   <y>50</y>
+                   <width>131</width>
+                   <height>171</height>
+                  </rect>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_24">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>60</y>
+                   <width>131</width>
+                   <height>16</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Campo Categorico</string>
+                 </property>
+                </widget>
+                <widget class="QComboBox" name="camXSeries">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>90</y>
+                   <width>111</width>
+                   <height>22</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="lserie">
+                 <property name="geometry">
+                  <rect>
+                   <x>280</x>
+                   <y>60</y>
+                   <width>191</width>
+                   <height>151</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>TextLabel</string>
+                 </property>
+                </widget>
+               </widget>
+               <widget class="QWidget" name="page_8">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>284</width>
+                  <height>181</height>
+                 </rect>
+                </property>
+                <attribute name="label">
+                 <string>CONFIGURE STYLE</string>
+                </attribute>
+                <layout class="QGridLayout" name="gridLayout_22">
+                 <item row="0" column="0">
+                  <layout class="QGridLayout" name="gridLayout_8">
+                   <item row="0" column="0" rowspan="6">
+                    <spacer name="verticalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>228</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabel" name="label_46">
+                     <property name="text">
+                      <string>Line thickness</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QSpinBox" name="widthLine">
+                     <property name="maximum">
+                      <number>70</number>
+                     </property>
+                     <property name="value">
+                      <number>2</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="3">
+                    <widget class="QRadioButton" name="opLineStyle">
+                     <property name="text">
+                      <string>Line Style</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLabel" name="label_43">
+                     <property name="text">
+                      <string>Title Color</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2">
+                    <widget class="QgsColorButton" name="colorTitleline"/>
+                   </item>
+                   <item row="1" column="3">
+                    <widget class="QRadioButton" name="opAreaStyle">
+                     <property name="text">
+                      <string>Area style</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLabel" name="label_42">
+                     <property name="text">
+                      <string>Title Size</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="2">
+                    <widget class="QSpinBox" name="spTitleSizeLine"/>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLabel" name="label_40">
+                     <property name="text">
+                      <string>Labels Color</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="2">
+                    <widget class="QgsColorButton" name="labelColorLine"/>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabel" name="label_41">
+                     <property name="text">
+                      <string>Labels Size</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="2">
+                    <widget class="QSpinBox" name="spLabelSizeLine"/>
+                   </item>
+                   <item row="5" column="1" colspan="2">
+                    <widget class="QCheckBox" name="splitTextLine">
+                     <property name="text">
+                      <string>Split long text labels</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QPushButton" name="procSeries">
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>PROCESS</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_15">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>348</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </widget>
-       <widget class="QWidget" name="page_6">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>529</width>
-          <height>267</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CONFIGURE STYLE</string>
-        </attribute>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>0</y>
-           <width>481</width>
-           <height>231</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_35">
-            <property name="text">
-             <string>Title Color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QgsColorButton" name="colorTitleBar"/>
-          </item>
-          <item row="0" column="2">
-           <widget class="QRadioButton" name="optColor">
-            <property name="text">
-             <string>Bar color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QgsColorButton" name="colorBar"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_39">
-            <property name="text">
-             <string>Title Size</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="spTitleSizeBar">
-            <property name="maximum">
-             <number>40</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_37">
-            <property name="text">
-             <string>Labels Color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QgsColorButton" name="colorLabelBar"/>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_38">
-            <property name="text">
-             <string>Labels Size</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QSpinBox" name="spLabelSizeBar">
-            <property name="maximum">
-             <number>30</number>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="2">
-           <widget class="QCheckBox" name="splitTextBar">
-            <property name="text">
-             <string>Split long text labels</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QRadioButton" name="opPalette">
-            <property name="text">
-             <string>Palette color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="QComboBox" name="paletteBar"/>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QPushButton" name="procBarras">
-       <property name="geometry">
-        <rect>
-         <x>7</x>
-         <y>345</y>
-         <width>101</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>PROCESS</string>
-       </property>
-      </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QWidget" name="tab">
-      <attribute name="title">
-       <string>Line</string>
-      </attribute>
-      <widget class="QPushButton" name="procSeries">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>339</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>258</width>
+         <height>20</height>
+        </size>
        </property>
-       <property name="text">
-        <string>PROCESS</string>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+       <property name="centerButtons">
+        <bool>false</bool>
        </property>
       </widget>
-      <widget class="QToolBox" name="lineToolBox">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>511</width>
-         <height>311</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Box</enum>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="page_7">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>509</width>
-          <height>247</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CALCULATION MODE</string>
-        </attribute>
-        <widget class="QLabel" name="label_17">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>341</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Seleccione los campos con los valores</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_23">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>30</y>
-           <width>161</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Campos con los valores</string>
-         </property>
-        </widget>
-        <widget class="QListWidget" name="listWidget">
-         <property name="geometry">
-          <rect>
-           <x>130</x>
-           <y>50</y>
-           <width>131</width>
-           <height>171</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_24">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>60</y>
-           <width>131</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Campo Categorico</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="camXSeries">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>90</y>
-           <width>111</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-        </widget>
-        <widget class="QLabel" name="lserie">
-         <property name="geometry">
-          <rect>
-           <x>280</x>
-           <y>60</y>
-           <width>191</width>
-           <height>151</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="page_8">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>100</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <attribute name="label">
-         <string>CONFIGURE STYLE</string>
-        </attribute>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>0</y>
-           <width>421</width>
-           <height>231</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0" rowspan="6">
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>228</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="label_46">
-            <property name="text">
-             <string>Line thickness</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QSpinBox" name="widthLine">
-            <property name="maximum">
-             <number>70</number>
-            </property>
-            <property name="value">
-             <number>2</number>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QRadioButton" name="opLineStyle">
-            <property name="text">
-             <string>Line Style</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_43">
-            <property name="text">
-             <string>Title Color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QgsColorButton" name="colorTitleline"/>
-          </item>
-          <item row="1" column="3">
-           <widget class="QRadioButton" name="opAreaStyle">
-            <property name="text">
-             <string>Area style</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="label_42">
-            <property name="text">
-             <string>Title Size</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QSpinBox" name="spTitleSizeLine"/>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="label_40">
-            <property name="text">
-             <string>Labels Color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="QgsColorButton" name="labelColorLine"/>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="label_41">
-            <property name="text">
-             <string>Labels Size</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="QSpinBox" name="spLabelSizeLine"/>
-          </item>
-          <item row="5" column="1" colspan="2">
-           <widget class="QCheckBox" name="splitTextLine">
-            <property name="text">
-             <string>Split long text labels</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>26</y>
-       <width>88</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Title of panel</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>118</x>
-       <y>24</y>
-       <width>137</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="l2">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>28</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Main layer</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="lc">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>30</y>
-       <width>181</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>10</y>
-     <width>551</width>
-     <height>34</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLabel" name="l0">
-      <property name="text">
-       <string>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="labelNp">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="WindowText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>206</red>
-            <green>206</green>
-            <blue>206</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Midlight">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>231</red>
-            <green>228</green>
-            <blue>224</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Dark">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>104</red>
-            <green>101</green>
-            <blue>97</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Mid">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>139</red>
-            <green>135</green>
-            <blue>129</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="BrightText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>202</red>
-            <green>202</green>
-            <blue>202</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ButtonText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>227</red>
-            <green>227</green>
-            <blue>227</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Window">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Shadow">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="HighlightedText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>202</red>
-            <green>202</green>
-            <blue>202</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="AlternateBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>231</red>
-            <green>228</green>
-            <blue>224</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ToolTipBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>220</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ToolTipText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="WindowText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>206</red>
-            <green>206</green>
-            <blue>206</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Midlight">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>231</red>
-            <green>228</green>
-            <blue>224</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Dark">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>104</red>
-            <green>101</green>
-            <blue>97</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Mid">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>139</red>
-            <green>135</green>
-            <blue>129</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="BrightText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>202</red>
-            <green>202</green>
-            <blue>202</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ButtonText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>227</red>
-            <green>227</green>
-            <blue>227</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Window">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Shadow">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="HighlightedText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>202</red>
-            <green>202</green>
-            <blue>202</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="AlternateBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>231</red>
-            <green>228</green>
-            <blue>224</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ToolTipBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>220</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ToolTipText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="WindowText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>104</red>
-            <green>101</green>
-            <blue>97</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>206</red>
-            <green>206</green>
-            <blue>206</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Midlight">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>231</red>
-            <green>228</green>
-            <blue>224</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Dark">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>104</red>
-            <green>101</green>
-            <blue>97</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Mid">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>139</red>
-            <green>135</green>
-            <blue>129</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>104</red>
-            <green>101</green>
-            <blue>97</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="BrightText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>202</red>
-            <green>202</green>
-            <blue>202</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ButtonText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>104</red>
-            <green>101</green>
-            <blue>97</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Window">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Shadow">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="HighlightedText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>202</red>
-            <green>202</green>
-            <blue>202</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="AlternateBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>208</red>
-            <green>202</green>
-            <blue>194</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ToolTipBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>220</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ToolTipText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial Black</family>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>ArrowCursor</cursorShape>
-      </property>
-      <property name="text">
-       <string>1</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <customwidgets>
   <customwidget>
