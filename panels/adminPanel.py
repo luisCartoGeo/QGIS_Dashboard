@@ -29,9 +29,10 @@ import tempfile
 import os
 
 class adminPanel():
-    def __init__(self,ubicacion='topLeft'):
+    def __init__(self,iface,ubicacion='topLeft'):
+        self.iface=iface
         self.pry= QgsProject.instance()
-        self.canvas = None
+        self.canvas=self.iface.mapCanvas()
         self.manejador=self.pry.annotationManager()
         self.posicion=ubicacion #posicion por defecto de las disponibles
         self.paneles=[]
@@ -51,7 +52,6 @@ class adminPanel():
         self.logAcces=self.log.canWriteLog()
         
     def init(self,canvas):
-        self.canvas=canvas
         self.extentCan=self.canvas.extent()
         self.altoScreen=self.canvas.height()
         self.anchoScreen=self.canvas.width()
@@ -109,7 +109,134 @@ class adminPanel():
         except Exception as e:
             if self.logAcces:
                 self.log.writeLog('Error al ubicar panel en admin '+str(e))
-        
+    
+    def loadByList(self,listaPaneles):
+        spatialOptions=['entid-selec-intersect','entid-selec-intersect-atrib','buffer-contains',\
+        'buffer-contains-attrib','buffer-contains-sum','densidad','densidad valor']
+        pry=QgsProject.instance()
+        for lista in listaPaneles:
+            ncapa=lista['capa']
+            lcapas=pry.mapLayersByName(ncapa)
+            capa=''
+            if len(lcapas)>0:
+                for c in lcapas:
+                    if c.source()==lista['rutaCapa']:
+                        capa=lcapas[0]
+                        break
+                    else:
+                        capa=lcapas[0]
+#Evaluar si existe capa2 para operaciones espaciales
+#            if lista['estilo'] in spatialOptions:
+#                ncapa2=lista['expresion']
+                x=float(lista['x'])
+                y=float(lista['y'])
+                ancho=float(lista['anchoP'])
+                alto=float(lista['altoP'])
+                if lista['panel']=='textPanel':
+                    if ',' in lista['expression']:
+                        expresion=lista['expression'].rsplit(",")
+                    else:
+                        expresion=[lista['expression']]
+                    if lista['icono']=='True':
+                        icono=True
+                    else:
+                        icono=False
+                    try:
+                        tp=textPanel(capa, lista['type'], lista['title'],expresion,fondTit=lista['fondTit'],\
+                        colorTextTit=lista['colorTextTit'],fondVal=lista['fondVal'],colorTextVal=lista['colorTextVal'],\
+                        suavizado=lista['suavizado'],estilo=lista['estilo'],\
+                        icono=icono,rutaIcono=lista['rutaIcono'],direccionIcono=lista['direccionIcono'],\
+                        colorIcono=lista['colorIcono'],anchoP=ancho,altoP=alto)
+                        tp.fillSymbol().setOpacity(0.0)
+                    except:
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Error in panel creation, check that the layers linked to the field structure when'+ 
+                        ' the panel was created exist',level=Qgis.Warning, duration=7)
+                    if type(tp)==textPanel:
+                        self.manejador.addAnnotation(tp)
+                        tp.setHasFixedMapPosition(False)
+                        tp.setRelativePosition(QtCore.QPointF(x, y))
+                        self.paneles.append(tp)
+                elif lista['panel']=='indicadorPanel':
+                    if ',' in lista['expression']:
+                        expresion=lista['expression'].rsplit(",")
+                    else:
+                        expresion=[lista['expression']]
+                    range=[float(lista['min']),float(lista['max'])]
+                    
+                    try:
+                        tp=indicadorPanel(capa,lista['type'],lista['title'],expresion,float(lista['threshold']),range=range,\
+                        estilo=lista['estilo'],anchoP=ancho,altoP=alto,colorBar=lista['colorBar'],\
+                        colorBackground=lista['colorBackground'],colorTit=lista['colorTit'],\
+                        sizeTitle=lista['sizeTitle'],colorBase=lista['colorBase'],colorLine=lista['colorLine'],\
+                        sizeLabel=lista['sizeLabel'],colorFinal=lista['colorFinal'],colorValue=lista['colorValue'],\
+                        colorMark=lista['colorMark'],relative=lista['relative'])
+                    except:
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Error in panel creation, check that the layers linked to the field structure when'+ 
+                        ' the panel was created exist',level=Qgis.Warning, duration=7)
+                    if type(tp)==indicadorPanel:
+                        tp.fillSymbol().setOpacity(0.0)
+                        self.manejador.addAnnotation(tp)
+                        tp.setHasFixedMapPosition(False)
+                        tp.setRelativePosition(QtCore.QPointF(x, y))
+                        self.paneles.append(tp)
+                elif lista['panel']=='barrasPanel':
+                    if lista['type']=='atributo-sum':
+                        expresion=lista['expression'].rsplit(",")
+                    else:
+                        expresion=[lista['expression'].rsplit(",")]
+                    if lista['wordBreak']=='True':
+                        wordbreak=True
+                    else:
+                        wordbreak=False
+                    try:
+                        tp=barrasPanel(capa,lista['type'],lista['title'],expresion,\
+                        colorBar=lista['colorBar'],colorTit=lista['colorTit'],typeColor=lista['typeColor'],\
+                        wordBreak=wordbreak,sizeTitle=lista['sizeTitle'],sizeLabels=lista['sizeLabels'],\
+                        colorLabels=lista['colorLabels'],palette=lista['palette'],\
+                        anchoP=ancho,altoP=alto)
+                    except:
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Error in panel creation, check that the layers linked to the field structure when'+ 
+                        ' the panel was created exist',level=Qgis.Warning, duration=7)
+                    if type(tp)==barrasPanel:
+                        tp.fillSymbol().setOpacity(0.0)
+                        self.manejador.addAnnotation(tp)
+                        tp.setHasFixedMapPosition(False)
+                        tp.setRelativePosition(QtCore.QPointF(x, y))
+                        self.paneles.append(tp)
+                elif lista['panel']=='seriesPanel':
+                    campox=lista['campox']
+                    camposy=lista['camposy'].rsplit(",")
+                    if lista['wordBreak']=='True':
+                        wordbreak=True
+                    else:
+                        wordbreak=False
+                    if lista['fill']=='True':
+                        fill=True
+                    else:
+                        fill=False
+                    try:
+                        tp=seriesPanel(capa,[camposy,campox],title=lista['title'],fill=fill,wordBreak=wordbreak,\
+                        widthline=int(lista['widthline']),colorTit=lista['colorTit'],\
+                        sizeTitle=lista['sizeTitle'],colorLabels=lista['colorLabels'],\
+                        sizeLabels=lista['sizeLabels'],anchoP=ancho,altoP=alto)
+                    except:
+                        self.iface.messageBar().pushMessage('ERROR',\
+                        'Error in panel creation, check that the layers linked to the field structure when'+ 
+                        ' the panel was created exist',level=Qgis.Warning, duration=7)
+                    if type(tp)==seriesPanel:
+                        tp.fillSymbol().setOpacity(0.0)
+                        self.manejador.addAnnotation(tp)
+                        tp.setHasFixedMapPosition(False)
+                        tp.setRelativePosition(QtCore.QPointF(x, y))
+                        self.paneles.append(tp)
+            else:
+                self.iface.messageBar().pushMessage('ERROR',\
+                'layer '+ncapa+' for '+lista['panel']+' not in project', level=Qgis.Warning, duration=2)
+                continue
+    
     def topLeft(self):
         crs=self.pry.crs()
         x=0
