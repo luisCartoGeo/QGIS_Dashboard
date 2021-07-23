@@ -22,7 +22,7 @@ from ..myUtils.myUtils import utils
 import tempfile
 
 class seriesPanel(QgsHtmlAnnotation):
-    def __init__(self,canvas,layer,expression,title='',estilo='multiple_fields',nselect=5,\
+    def __init__(self,layer,expression,title='',estilo='multiple_fields',nselect=5,\
     wordBreak=False,position='top-left',anchoP=80,altoP=40.0,sizeTitle=12,colorTit='black',\
     colorLabels='black',sizeLabels=9,widthline=1,fill=False):
         super().__init__()
@@ -30,7 +30,6 @@ class seriesPanel(QgsHtmlAnnotation):
         self.tipo='multiple_fields'
         
         self.title=title
-        self.estilo=estilo
         self.wordBreak=wordBreak
         self.colorTit=colorTit
         self.sizeTitle=sizeTitle
@@ -44,7 +43,6 @@ class seriesPanel(QgsHtmlAnnotation):
         self.posicion=position
 
         self.expresion=expression
-        self.canvas = canvas
         self.anchop=anchoP
         self.altop=altoP
         #guardamos aqui el ancho y alto luego de considerar 
