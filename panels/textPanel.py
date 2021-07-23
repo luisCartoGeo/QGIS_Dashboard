@@ -52,7 +52,7 @@ class textPanel(QgsHtmlAnnotation):
         self.direccionIcono=direccionIcono
         self.colorIcono=colorIcono
         
-        self.setMapLayer(self.capa)
+#        self.setMapLayer(self.capa)
         self.anchop=anchoP
         self.altop=altoP
         
