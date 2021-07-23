@@ -42,7 +42,6 @@ class indicadorPanel(QgsHtmlAnnotation):
         self.colorTit=colorTit
         self.colorBar=colorBar
         self.colorBackground=colorBackground
-        self.colorTit=colorTit
         self.colorBase=colorBase
         self.sizeTitle=sizeTitle
         self.colorLine=colorLine
