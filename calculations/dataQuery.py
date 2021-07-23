@@ -11,6 +11,8 @@
         email                : luis3176@yahoo.com
  ***************************************************************************/
  """
+from qgis.core import QgsProject, QgsVectorLayer, QgsFeature, QgsStatisticalSummary
+ 
 #Concultar datos
 class queriesData:
     
@@ -77,5 +79,34 @@ class queriesData:
                         dicc[c]=0
             resultado.append((categoria,dicc))
         return resultado
+    
+    @staticmethod
+    def statisticsField(lentidades,campo,operador):
+        ncampo=campo
+        if operador=='min':
+            stat = QgsStatisticalSummary(QgsStatisticalSummary.Min)
+            stat.calculate([i[ncampo] for i in lentidades])
+            min=stat.min()
+            return min
+        elif operador=='max':
+            stat = QgsStatisticalSummary(QgsStatisticalSummary.Max)
+            stat.calculate([i[ncampo] for i in lentidades])
+            max=stat.max()
+            return max
+        elif operador=='mean':
+            stat = QgsStatisticalSummary(QgsStatisticalSummary.Mean)
+            stat.calculate([i[ncampo] for i in lentidades])
+            mean=stat.mean()
+            return mean
+        elif operador=='range':
+            stat = QgsStatisticalSummary(QgsStatisticalSummary.Range)
+            stat.calculate([i[ncampo] for i in lentidades])
+            rango=stat.range()
+            return rango
+        elif operador=='median':
+            stat = QgsStatisticalSummary(QgsStatisticalSummary.Median)
+            stat.calculate([i[ncampo] for i in lentidades])
+            mediana=stat.median()
+            return mediana
         
     
