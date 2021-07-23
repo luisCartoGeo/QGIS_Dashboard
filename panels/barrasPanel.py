@@ -21,7 +21,7 @@ from ..calculations.dataQuery import queriesData
 import tempfile
 
 class barrasPanel(QgsHtmlAnnotation):
-    def __init__(self,canvas,layer,type,title,expression,position='top-left',anchoP=80,altoP=40.0,\
+    def __init__(self,layer,type,title,expression,position='top-left',anchoP=80,altoP=40.0,\
     colorBar="#4db0c3",wordBreak=True,colorTit='black',sizeTitle=12,colorLabels='black',sizeLabels=9,\
     orientation='v',typeColor='palette',palette='contrast'):
         super().__init__()
@@ -42,7 +42,7 @@ class barrasPanel(QgsHtmlAnnotation):
         
         self.tipo= type
         self.expresion=expression
-        self.canvas = canvas
+#        self.canvas = canvas
 #        self.setMapLayer(self.capa)
         self.anchop=anchoP
         self.altop=altoP
