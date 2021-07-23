@@ -24,7 +24,7 @@
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, QPointF
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QLabel,QDoubleSpinBox, QGraphicsItem,\
-     QGraphicsOpacityEffect, QMessageBox 
+     QGraphicsOpacityEffect, QMessageBox, QFileDialog 
 
 from qgis.core import QgsAnnotation, QgsHtmlAnnotation, QgsProject, QgsMapLayer, QgsVectorLayer
 from qgis.gui import QgsMapCanvas, QgsMapCanvasAnnotationItem
@@ -33,12 +33,17 @@ from .resources import *
 # Import the code for the dialog
 from .QGISDashboardDialog import dashDialog
 import os.path
+try:
+    from io import open
+except:
+    pass
 from .panels.textPanel import textPanel
 from .panels.indicadorPanel import indicadorPanel
 from .panels.seriesPanel import seriesPanel
 from .panels.barrasPanel import barrasPanel
 from .panels.groupPanel6 import groupPanel
 from .panels.adminPanel import adminPanel
+from .myUtils.myUtils import utils
 
 class QGISDashboard:
     """QGISDashboard Plugin Implementation."""
@@ -186,6 +191,20 @@ class QGISDashboard:
             callback=self.fixRelease,
             whats_this=self.tr(u'Fixes on-screen panels or releases them to map coordinates'),
             parent=self.iface.mainWindow())
+        icon_save=self.dir+'//save.png'
+        self.add_action(
+            icon_save,
+            text=self.tr(u'save dashboard'),
+            callback=self.save,
+            whats_this=self.tr(u'Save the dashboards'),
+            parent=self.iface.mainWindow())
+        icon_load=self.dir+'//load.png'
+        self.add_action(
+            icon_load,
+            text=self.tr(u'Load dashboard'),
+            callback=self.load,
+            whats_this=self.tr(u'Load the dashboards'),
+            parent=self.iface.mainWindow())
         self.ltrans=QLabel('Transparency')
         self.transparency=QDoubleSpinBox()
         self.transparency.setRange(0.000,1.000)
@@ -199,7 +218,7 @@ class QGISDashboard:
         self.actions.append(self.labelT)
         self.actions.append(self.actionTransparency)
 
-        self.manager=adminPanel(self.iface.mapCanvas())
+        self.manager=adminPanel(self.iface)
         # will be set False in run()
         self.first_start = True
 
@@ -210,6 +229,46 @@ class QGISDashboard:
                 self.tr(u'&QGISDashboard'),
                 action)
             self.iface.removeToolBarIcon(action)
+    
+    def save(self):
+        listPanels=self.manager.paneles
+        if len(listPanels)>0:
+            try:
+                fd= QFileDialog.getSaveFileName(None,"Save the Dashboards","","*.dsh")
+                with open(fd[0],"wt") as fichero:
+                    for e,a in enumerate(listPanels):
+                        if type(a)==textPanel:
+                            fichero.write('textPanel'+'\n')
+                            text=utils.writeTextPanel(a)
+                            fichero.write(text)
+                        elif type(a)==barrasPanel:
+                            fichero.write('barrasPanel'+'\n')
+                            text=utils.writeBarPanel(a)
+                            fichero.write(text)
+                        elif type(a)==seriesPanel:
+                            fichero.write('seriesPanel'+'\n')
+                            text=utils.writeSeriePanel(a)
+                            fichero.write(text)
+                        elif type(a)==indicadorPanel:
+                            fichero.write('indicadorPanel'+'\n')
+                            text=utils.writeIndicadorPanel(a)
+                            fichero.write(text)
+            except Exception as e:
+                self.iface.messageBar().pushMessage('ERROR',\
+                str(e), level=1, duration=7)
+    
+    def load(self):
+        try:
+            fd= QFileDialog.getOpenFileName(None,"Open the Dashboards","","*.dsh")
+            with open(fd[0],'r') as file:
+                lista=file.read().splitlines()
+            ltextPanels=utils.loadPanels(lista)
+    #        print(ltextPanels)
+            self.manager.loadByList(ltextPanels)
+        except Exception as e:
+            self.iface.messageBar().pushMessage('ERROR',\
+            str(e), level=1, duration=7)
+                    
     
     def fixRelease(self):
         canvas=self.iface.mapCanvas()
