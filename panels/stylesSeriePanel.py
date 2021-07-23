@@ -32,9 +32,7 @@ class styleSeriePanel():
         self.widthline=widthline
         self.fill=fill
         self.select=select
-        
-        
-        
+ 
         self.data=data
         self.style=estilo
         self.relleno='none'
@@ -153,7 +151,14 @@ class styleSeriePanel():
                 
             closeDat='var data=['+','.join('trace'+str(i) for i in range(len(data)))+'];\n'
             self.html=self.html+closeDat
-        self.html=self.html+'var layout = {'+'\n'
+        
+        if type(self.data)==dict:
+            n=len(self.data)+0.5
+        else:
+            n=len(self.data[0][1])+0.5
+        axe='var layout = {'+'\n'+\
+            '   xaxis:{range:[0,'+str(n)+']},'+'\n'
+        self.html=self.html+axe
     
     def defTitle(self):
         if self.title== None or self.title=='':
@@ -174,7 +179,7 @@ class styleSeriePanel():
         "Plotly.newPlot('myDiv', data, layout, {displayModeBar: false}, config);"+'\n'+\
         'window.onresize = function() {'+'\n'+\
         "Plotly.relayout('myDiv', {"+'\n'+\
-        "'xaxis.autorange': true,"+'\n'+\
+        "'xaxis.autorange': false,"+'\n'+\
         "'yaxis.autorange': true,"+'\n'+\
         "'margin': { t: 30, b: 30, l: 30, r:20, autoexpand: true}"+'\n'+\
         '});'+'\n'+\
