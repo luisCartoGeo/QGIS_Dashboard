@@ -240,6 +240,7 @@ class styleTextPanel():
         self.styles[self.style]()
         
     def evalColors(self):
+#        if type(self.colorTitle)!='str': 
         colors=[self.colorTitle,self.colorFontTitle,self.colorValue,self.colorFontValue]
         lc=map(lambda x:'rgb('+str(x.red())+','+str(x.green())+','+str(x.blue())+')'\
         if type(x)==QColor else x,colors)
