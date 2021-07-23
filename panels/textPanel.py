@@ -97,7 +97,7 @@ class textPanel(QgsHtmlAnnotation):
         elif self.tipo=='Porcentaje':
             valor='<p class='+'"valor"><strong>'+str(round(val,3))+' %'+'</strong></p>'+'\n'
         elif self.tipo=='math-atributo':
-            valor=val
+            valor='<p class='+'"valor"><strong>'+str(round(val,3))+'</strong></p>'+'\n'
         elif self.tipo=='entid_seleccionadas' or self.tipo=='entid-selec-intersect' or\
         self.tipo=='entid-selec-intersect-atrib' or self.tipo=='buffer-contains' or\
         self.tipo=='buffer-contains-attrib':
