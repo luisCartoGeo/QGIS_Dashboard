@@ -13,7 +13,8 @@
  """
 from ..calculations.dataQuery import queriesData
 from ..calculations.spatialQuery import spatialQueries
-from qgis.core import QgsProject, QgsVectorLayer, QgsFeature
+from qgis.core import QgsProject, QgsVectorLayer, QgsFeature, QgsStatisticalSummary,\
+     QgsFeatureRequest, QgsFields, QgsField
 
 class operations():
     operations_polygon=['Sum of an attribute','Percentage','Statistics. Selected entities',\
@@ -107,19 +108,31 @@ class operations():
         return val
     
     def statisticsAttrib(self):
+        campo=self.expression[0]
+        operador=self.expression[1]
+        campos=self.capa.fields()
+        idcampo=campos.indexOf(campo)
+        request = QgsFeatureRequest()
         if len(self.expression)==2:
-            campo=self.expression[0]
-            operador=self.expression[1]
-            val='<p class='+'"valor"><strong>[% aggregate('+"'"+self.capa.name()+"', '"+operador+"',"+'"'+campo+\
-            '",filter:=is_selected('+"'"+self.capa.name()+"'"+', $currentfeature)) %]</strong></p>'+'\n'
+            request.setFlags(QgsFeatureRequest.NoGeometry )
+            request.setSubsetOfAttributes([idcampo])
+            if self.capa.selectedFeatureCount()>0:
+                lentidades=self.capa.getSelectedFeatures(request)
+            else:
+                lentidades=self.capa.getFeatures(request)
+            val= queriesData.statisticsField(lentidades,campo,operador)
         elif len(self.expression)==4:
-            campo=self.expression[0]
-            operador=self.expression[1]
             atrib=self.expression[2]
             valor_atrib=self.expression[3]
-            val='<p class='+'"valor"><strong>[% aggregate('+"'"+self.capa.name()+"', '"+operador+"',"+'"'+campo+\
-            '",filter:=is_selected('+"'"+self.capa.name()+"'"+', $currentfeature) and '+\
-            '"'+atrib+'"= '+"'"+valor_atrib+"'"+') %]</strong></p>'+'\n'
+            idatrib=campos.indexOf(atrib)
+            request.setFlags(QgsFeatureRequest.NoGeometry )
+            request.setSubsetOfAttributes([idcampo,idatrib])
+            request.setFilterExpression ("'"+'"'+atrib+'"'+'='+valor_atrib+"'")
+            if self.capa.selectedFeatureCount()>0:
+                lentidades=self.capa.getSelectedFeatures(request)
+            else:
+                lentidades=self.capa.getFeatures(request)
+            val= queriesData.statisticsField(lentidades,campo,operador)
         return val
     
     #SPATIAL OPERATIONS*********************************************************
