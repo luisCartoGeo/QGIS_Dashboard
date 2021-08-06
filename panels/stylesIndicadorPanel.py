@@ -21,9 +21,8 @@ class styleIndicadorPanel():
     colorBar="blue",colorBackground='white',colorBase='lightgray',colorLine='red',colorValue='black',\
     sizeLabel=10,colorFinal='#B31101',colorMark='red',relative='false'):
         self.styles={'Angular':self.angular,'Bullet':self.bullet,'Card':self.card}
-#        dir=os.path.dirname(__file__)
-#        self.dirJs=os.path.join(dir,'plotly-latest.min.js')
-        self.dir='C:\dashboard\plugin\qgis_dashboard\panels\plotly-latest.min.js'
+        dirj=os.path.dirname(__file__)
+        self.dir=os.path.join(dirj,'plotly-latest.min.js')
         self.title=title
         self.colorTit=colorTit
         self.sizeTitle=sizeTitle
