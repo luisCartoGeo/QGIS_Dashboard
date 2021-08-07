@@ -40,6 +40,10 @@ El objetivo del plugin <strong>QGIS Dashboard</strong> es permitir la creación 
             - [Grafico Indicador](#Grafico-Indicador)
             - [Grafico de Barras](#Grafico-de-Barras)
             - [Grafico de lineas. Series](#Grafico-de-lineas.-Series)
+    -  [Mover, redimensionar y borrar paneles](#Mover-y-redimensionar-paneles)
+    -  [Darle trasnparencia a los paneles](#Darle-trasnparencia-a-los-paneles)
+    -  [Guardar un tablero](#Guardar-un-tablero)
+    -  [Abrir un tablero desde archivo](#Abrir-un-tablero-desde-archivo)
 
 ## Tutorial
 ### Funcionamiento general del plugin
