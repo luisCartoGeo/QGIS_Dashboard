@@ -3,7 +3,8 @@
 <h2><b>Repositorio del código del plugin para la construcción de Dashboards en QGIS</b></h2><br>
 El objetivo del plugin <strong>QGIS Dashboard</strong> es permitir la creación de tableros de control en la pantalla de QGIS.<br>
 <hr></hr>
-<h2>ESTE PLUGIN SE ENCUENTRA EN DESARROLLO (PRODUCCION)</h2><img width="40%" src="https://github.com/luisCartoGeo/QGIS_Dashboard/blob/main/trabajando.gif" style="max-width:80%;">
+<h2>ESTE PLUGIN SE ENCUENTRA EN DESARROLLO (PRODUCCION)</h2>
+<center><img style="text-align:center" src="https://github.com/luisCartoGeo/QGIS_Dashboard/blob/main/trabajando.gif" style="max-width:80%;"></center>
 <hr></hr>
 
 ## Indice
@@ -27,9 +28,20 @@ El objetivo del plugin <strong>QGIS Dashboard</strong> es permitir la creación 
                 - [Asignando un estilo](#Asignando-un-estilo)
                 - [Configurando los colores](#Configurando-los-colores)
                 - [Integrando y configurando un icono](#Integrando-y-configurando-un-icono)
+                - [Consultas de datos](#Consultas-de-datos)
+                    - [Totalizar un atributo](#Totalizar-un-atributo)
+                    - [Porcentaje. Proporción](#Porcentaje.-Proporción)
+                    - [Estadistica de un atributo](#Estadistica-de-un-atributo)
+                - [Consultas espaciales](#Consultas-espaciales)
+                    - [Entidades contenidas. Poligonos](#Entidades-contenidas.-Poligonos)
+                    - [Entidades a una distancia. Lineas-puntos](#Entidades-a-una-distancia.-Lineas-puntos)
+                    - [Entidades contenidas que coinciden con](#Entidades-contenidas-que-coinciden-con)
+                    - [Entidades a una distancia que contenide con](#Entidades-a-una-distancia-que-contenide-con)
+            - [Grafico Indicador](#Grafico-Indicador)
+            - [Grafico de Barras](#Grafico-de-Barras)
+            - [Grafico de lineas. Series](#Grafico-de-lineas.-Series)
 
 ## Tutorial
-
 ### Funcionamiento general del plugin
 Los <strong>Tableros de Control (Dashboards)</strong> son construidos creando paneles los cuales contendrán indicadores o gráficos, los paneles son adaptables, el usuario podrá mover, borrar, redimensionar utilizando las herramientas de anotación de QGIS.<br>
 Este plugin aprovecha y extiende mediante Python las <strong>Anotaciones Html</strong> propias de QGIS para darles mayor funcionalidad, desplegar gráficos, responder a eventos.
