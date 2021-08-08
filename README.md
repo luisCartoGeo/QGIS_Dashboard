@@ -39,7 +39,7 @@ The purpose of the <strong>QGIS Dashboard</strong> plugin is to allow the creati
                     - [Entities at a distance containing with](#Entities-at-a-distance-containing-with)
             - [Indicator Graph](#Indicator-Plot)
             - [Bar Chart](#Bar-Chart)
-            - Line chart - Series](#Line-charts.-Series)
+            - [Line chart - Series](#Line-charts.-Series)
     - [Move, resize and delete panels](#Move-and-resize-panels)
     - [Make panels transparent](#Transparent-panels)
     - [Save a dashboard](#Save-a-board)
