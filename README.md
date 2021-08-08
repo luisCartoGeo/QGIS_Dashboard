@@ -21,6 +21,7 @@ El objetivo del plugin <strong>QGIS Dashboard</strong> es permitir la creación 
     - [Procedimiento para descargar el plugin](https://www.linkedin.com/in/luisedpg/)
     - [Procedimiento para la instalación](https://www.linkedin.com/in/luisedpg/)
  - [Caracteristicas del plugin QGIS Dashboard](#caracteristicas)
+ - [<b>Tutorial rapido</b>](#Tutorial-rapido)
  - [Tutorial](#tutorial)
     - [Funcionamiento general del plugin](#funcionamiento-general-del-plugin)
     - [Graficos e indicadores disponibles](#graficos-e-indicadores-disponibles)
