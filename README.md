@@ -1,5 +1,11 @@
 # QGIS_Dashboard
 
+<table align="center">
+    <p align = "center">
+      <a href="https://www.linkedin.com/in/luisedpg/"><img alt="LuisGeo" src="https://img.shields.io/badge/AUTOR-Luis%20Eduardo%20Perez%20Graterol-brightgreen"></a>
+      <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FluisCartoGeo%2FQGIS_Dashboard%2F"><img alt="Twitter" src="https://img.shields.io/twitter/url?label=TWITTER&style=social&url=https%3A%2F%2Ftwitter.com%2FLuiseperezg"></a>
+      </P>
+</table>
 <h2><b>Repository of the plugin for building Dashboards in QGIS</b></h2><br>.
 The purpose of the <strong>QGIS Dashboard</strong> plugin is to allow the creation of dashboards on the QGIS screen.<br><br>
 <hr></hr>
@@ -15,6 +21,7 @@ The purpose of the <strong>QGIS Dashboard</strong> plugin is to allow the creati
     - [Procedure for downloading the plugin](https://www.linkedin.com/in/luisedpg/)
     - [Procedure for the installation](https://www.linkedin.com/in/luisedpg/)
  - [QGIS Dashboard Plugin features](#QGIS-Dashboard-Plugin-features)
+ - [<b>Fast tutorial</b>](#Fast-tutorial)
  - [Tutorial](#tutorial)
     - [General functioning of the plugin](#general-functioning-of-plugin)
     - [Charts and indicators available](#charts-and-indicators-available)
