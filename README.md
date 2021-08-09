@@ -16,11 +16,11 @@ El objetivo del plugin <strong>QGIS Dashboard</strong> es permitir la creación 
 
 ## Indice
 
-- [Introducción](https://www.linkedin.com/in/luisedpg/)
-- [ ¿Por qué QGIS necesita un Dashboard? ](https://www.linkedin.com/in/luisedpg/)
-- [Instalación del plugin QGIS Dashboard](https://www.linkedin.com/in/luisedpg/)
-    - [Procedimiento para descargar el plugin](https://www.linkedin.com/in/luisedpg/)
-    - [Procedimiento para la instalación](https://www.linkedin.com/in/luisedpg/)
+- [Introducción](https://www.linkedin.com/pulse/generalidades-y-procedimiento-para-la-instalaci%25C3%25B3n-del-perez-graterol)
+- [ ¿Por qué QGIS necesita un Dashboard? ](https://www.linkedin.com/pulse/generalidades-y-procedimiento-para-la-instalaci%25C3%25B3n-del-perez-graterol)
+- [Instalación del plugin QGIS Dashboard](https://www.linkedin.com/pulse/generalidades-y-procedimiento-para-la-instalaci%25C3%25B3n-del-perez-graterol)
+    - [Procedimiento para descargar el plugin](https://www.linkedin.com/pulse/generalidades-y-procedimiento-para-la-instalaci%25C3%25B3n-del-perez-graterol)
+    - [Procedimiento para la instalación](https://www.linkedin.com/pulse/generalidades-y-procedimiento-para-la-instalaci%25C3%25B3n-del-perez-graterol)
  - [Caracteristicas del plugin QGIS Dashboard](#caracteristicas)
  - [<b>Tutorial rapido</b>](#Tutorial-rapido)
  - [Tutorial](#tutorial)
