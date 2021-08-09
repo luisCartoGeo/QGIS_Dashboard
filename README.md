@@ -3,7 +3,8 @@
     <p align = "center">
       <a href="https://www.linkedin.com/in/luisedpg/"><img alt="LuisGeo" src="https://img.shields.io/badge/AUTOR-Luis%20Eduardo%20Perez%20Graterol-brightgreen"></a>
        <a href="https://github.com/luisCartoGeo/QGIS_Dashboard/tree/master/"><img alt="LuisGeo" src="https://img.shields.io/badge/ENGLISH-Documentation-lightgrey"></a>
-      <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FluisCartoGeo%2FQGIS_Dashboard%2F"><img alt="Twitter" src="https://img.shields.io/twitter/url?label=TWITTER&style=social&url=https%3A%2F%2Ftwitter.com%2FLuiseperezg"></a>
+      <a href="https://github.com/luisCartoGeo/QGIS_Dashboard/stargazers"><img src="https://img.shields.io/badge/STARS-15-blue"></a>
+        <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FluisCartoGeo%2FQGIS_Dashboard%2F"><img alt="Twitter" src="https://img.shields.io/twitter/url?label=TWITTER&style=social&url=https%3A%2F%2Ftwitter.com%2FLuiseperezg"></a>
       </P>
 </table>
      <h2><b>Repositorio del código del plugin para la construcción de Dashboards en QGIS</b></h2><br>
