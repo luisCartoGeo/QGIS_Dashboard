@@ -15,11 +15,11 @@ The purpose of the <strong>QGIS Dashboard</strong> plugin is to allow the creati
 
 ## Table of Contents
 
-- [Introduction](https://www.linkedin.com/in/luisedpg/)
-- [Why does QGIS need a Dashboard](https://www.linkedin.com/in/luisedpg/)
-- [Installation of the QGIS Dashboard plugin](https://www.linkedin.com/in/luisedpg/)
-    - [Procedure for downloading the plugin](https://www.linkedin.com/in/luisedpg/)
-    - [Procedure for the installation](https://www.linkedin.com/in/luisedpg/)
+- [Introduction](https://www.linkedin.com/pulse/overview-installation-qgis-dashboard-plugin-perez-graterol)
+- [Why does QGIS need a Dashboard](https://www.linkedin.com/pulse/overview-installation-qgis-dashboard-plugin-perez-graterol)
+- [Installation of the QGIS Dashboard plugin](https://www.linkedin.com/pulse/overview-installation-qgis-dashboard-plugin-perez-graterol)
+    - [Procedure for downloading the plugin](https://www.linkedin.com/pulse/overview-installation-qgis-dashboard-plugin-perez-graterol)
+    - [Procedure for the installation](https://www.linkedin.com/pulse/overview-installation-qgis-dashboard-plugin-perez-graterol)
  - [QGIS Dashboard Plugin features](#QGIS-Dashboard-Plugin-features)
  - [<b>Fast tutorial</b>](#Fast-tutorial)
  - [Tutorial](#tutorial)
