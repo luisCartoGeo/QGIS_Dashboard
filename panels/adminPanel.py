@@ -90,6 +90,10 @@ class adminPanel():
         if len(lista)>0:
             for i in lista:
                 self.tempPanels.append(i)
+    
+    def removePanels(self):
+        self.tempPanels.clear()
+        self.delClose()    
         
     #DEFINIENDO LA POSICION, SE INTRODUCE DE 0 A 1
     def yp(self,valor):
