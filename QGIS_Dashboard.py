@@ -205,6 +205,15 @@ class QGISDashboard:
             callback=self.load,
             whats_this=self.tr(u'Load the dashboards'),
             parent=self.iface.mainWindow())
+        
+        icon_load=self.dir+'//clear.png'
+        self.add_action(
+            icon_load,
+            text=self.tr(u'Clear dashboard'),
+            callback=self.clear,
+            whats_this=self.tr(u'Clear the dashboards'),
+            parent=self.iface.mainWindow())
+        
         self.ltrans=QLabel('Transparency')
         self.transparency=QDoubleSpinBox()
         self.transparency.setRange(0.000,1.000)
@@ -334,7 +343,11 @@ class QGISDashboard:
                             else:
                                 i.graphicsEffect().setOpacity(round(self.transparency.value(),2))
                             listPanels.append(i.annotation())
-                    
+
+    def clear(self):
+        #listPanels=self.manager.paneles
+        self.manager.removePanels()  
+
     def run(self):
         """Displays the wizard for the configuration and creation of panels."""
         pry=QgsProject.instance() 
